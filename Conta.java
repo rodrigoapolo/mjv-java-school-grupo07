@@ -1,3 +1,6 @@
-public class Conta{
+public class Conta {
+
+private Long numero;
+
 
 }
