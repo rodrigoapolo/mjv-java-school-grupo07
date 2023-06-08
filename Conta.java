@@ -1,11 +1,15 @@
 public class Conta {
 
-private Long numero;
-double saldo;
+    String conta;
+    String numero;
+    double saldo;
 
-public consultarSaldoAtual(){
-    System.out.println(saldo);
-}
+    public void consultarSaldoAtual() {
+        System.out.println(saldo);
+    }
 
+    public void transferir(double valor) {
+
+    }
 
 }
