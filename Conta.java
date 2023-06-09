@@ -8,6 +8,7 @@ public consultarSaldoAtual(){
     System.out.println(saldo);
 }
 
+
 public void cancelarContaJustificativa(String justificativa){
 
     if(existeConta()){
@@ -32,4 +33,14 @@ public boolean existeConta(){
     return true;
 }
 
+
+public Double sacarValor(Double valor) {
+if (saldo < valor) {
+throw new IllegalArgumentException("Conta não possui saldo!");
+}
+saldo -= valor;
+return valor;
+
+}
+  
 }
