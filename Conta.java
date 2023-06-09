@@ -1,13 +1,17 @@
 public class Conta {
+    Double agencia;
+    Double numero;
+    Double saldo;
+    String nome;
 
-private Long numero;
-double saldo;
-private String nome;
 
-public consultarSaldoAtual(){
-    System.out.println(saldo);
-}
+    public void consultarSaldoAtual() {
+        System.out.println(saldo);
+    }
 
+    public void transferir(double valor) {
+
+    }
 
 public void cancelarContaJustificativa(String justificativa){
 
