@@ -1,6 +1,6 @@
 public class Conta {
-    Double agencia;
-    Double numero;
+    Long agencia;
+    Long numero;
     Double saldo;
     String nome;
 
