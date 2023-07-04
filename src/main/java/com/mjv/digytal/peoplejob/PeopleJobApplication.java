@@ -1,13 +1,13 @@
-package comnewjobs.newjobs;
+package com.mjv.digytal.peoplejob;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NewJobsApplication {
+public class PeopleJobApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NewJobsApplication.class, args);
+        SpringApplication.run(PeopleJobApplication.class, args);
     }
 
 }
