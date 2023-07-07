@@ -1,4 +1,7 @@
 package com.mjv.digytal.peoplejob.repository;
 
-public interface HabilidadeRepository {
+import com.mjv.digytal.peoplejob.model.Habilidade;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HabilidadeRepository extends JpaRepository<Habilidade, Integer> {
 }
