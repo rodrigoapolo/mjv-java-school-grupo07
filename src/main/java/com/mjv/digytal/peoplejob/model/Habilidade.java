@@ -6,12 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "tb_cidade")
-public class Cidade {
+@Table(name = "tb_habilidade")
+public class Habilidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private String estado;
-    private String sigla;
 }

@@ -1,27 +1,15 @@
 package com.mjv.digytal.peoplejob.model;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "tb_profissao")
 public class Profissao {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
-    
-    public Profissao(int id, String nome){
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId (int id){
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome){
-        this.nome = nome;
-    }
 }
