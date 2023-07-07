@@ -42,6 +42,7 @@ public class Cadastro {
             inverseJoinColumns={@JoinColumn(name="habilidade_ID")})
     private List<Habilidade> habilidades = new ArrayList<>();
 
+    @Setter(AccessLevel.PRIVATE)
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cadastro_id",referencedColumnName = "id")
     private List<Experiencia> experiencia;
