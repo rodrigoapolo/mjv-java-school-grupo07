@@ -1,18 +1,16 @@
 package com.mjv.digytal.peoplejob.repository;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
-import com.mjv.digytal.peoplejob.model.Cadastro;
-import com.mjv.digytal.peoplejob.model.Experiencia;
-
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import com.mjv.digytal.peoplejob.dto.view.CadastroView;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
+import com.mjv.digytal.peoplejob.model.Cadastro;
 
 // 3 - Localizar os candidatos que mencionara o salário mínimo maior igual a 1.900 e menor que 3.000
 
@@ -21,8 +19,13 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 
     Cadastro getByCpf(String cpf);
     
-	
 	@Query("SELECT c FROM Cadastro c WHERE c.experiencia.empregoAtual = :empregoAtual")
 	List<CadastroView> findNotWorkingCandidates(@Param("empregoAtual") boolean empregoAtual);
     
+	@Query("SELECT c FROM Cadastro c JOIN c.profissao p WHERE p.nome <> 'ANALISTA DE SISTEMAS'")
+	List<CadastroViewProfissao> findNotAnalistaDeSistemas();
+	
+	@Query("SELECT c FROM Cadastro c WHERE c.pretencaoSalarial.pretencaoMinima >= :salarioMinimoMenor AND c.pretencaoSalarial.pretencaoMinima < :salarioMinimoMaior")
+	List<CadastroViewPretensao> findIntervaloSalarioMinimo(@Param("salarioMinimoMenor") Double salarioMinimoMenor, @Param("salarioMinimoMaior") Double salarioMinimoMaior);
+	
 }

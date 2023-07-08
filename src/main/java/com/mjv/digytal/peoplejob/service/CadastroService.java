@@ -1,8 +1,12 @@
 package com.mjv.digytal.peoplejob.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mjv.digytal.peoplejob.dto.view.CadastroView;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 
@@ -16,4 +20,7 @@ public class CadastroService {
        return cadastroRepository.getByCpf(cpf);
     }
     
+    public List<CadastroViewPretensao> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor, Double salarioMinimoMaior) {
+    	return cadastroRepository.findIntervaloSalarioMinimo(salarioMinimoMenor, salarioMinimoMaior);
+    }
 }
