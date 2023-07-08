@@ -12,7 +12,7 @@ public class Endereco {
     private String numero;
     private String complemento;
     private String bairro;
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "cidade_id",referencedColumnName = "id")
     private Cidade cidade;
 }
