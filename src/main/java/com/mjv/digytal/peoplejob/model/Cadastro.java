@@ -44,7 +44,7 @@ public class Cadastro {
     @Setter(AccessLevel.PRIVATE)
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cadastro_id",referencedColumnName = "id")
-    private List<Experiencia> experiencia = new LinkedList<>();
+    private List<Experiencia> experiencias = new LinkedList<>();
 
 }
 
