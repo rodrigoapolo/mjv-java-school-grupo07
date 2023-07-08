@@ -19,8 +19,12 @@ public class CadastroController {
     private CadastroService service;
 
     @GetMapping(value = "/busca-cpf/{cpf}")
-    public ResponseEntity<Cadastro> buscaCPF(@PathVariable String cpf){
-        Cadastro c = service.buscaCPF(cpf);
-        return ResponseEntity.ok().body(c);
+    public ResponseEntity<Cadastro> buscaCPF(@PathVariable String cpf) {
+        
+    	Cadastro c = service.buscaCPF(cpf);
+        
+    	return ResponseEntity.ok().body(c);
+        
     }
+    
 }
