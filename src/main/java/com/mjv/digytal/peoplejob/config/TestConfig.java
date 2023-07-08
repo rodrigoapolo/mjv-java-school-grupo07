@@ -62,7 +62,7 @@ public class TestConfig implements CommandLineRunner {
         empresa1.setNome("MJV");
         experiencia1.setEmpresa(empresa1);
         experiencia1.setProfissao(profissao1);
-        c1.getExperiencias().add(experiencia1);
+        c1.setExperiencia(experiencia1);
 
 
 
