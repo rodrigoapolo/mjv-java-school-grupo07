@@ -28,10 +28,8 @@ public class Cadastro {
     private Endereco endereco;
 
     @Setter(AccessLevel.PRIVATE)
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinTable(name="profissao_cadastro",
-            joinColumns={@JoinColumn(name="cadastro_ID")},
-            inverseJoinColumns={@JoinColumn(name="profissao_ID")})
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cadastro_id",referencedColumnName = "id")
     private Set<Profissao> profissao = new LinkedHashSet<>();
 
     @Setter(AccessLevel.PRIVATE)
