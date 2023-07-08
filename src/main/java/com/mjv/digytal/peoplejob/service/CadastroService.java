@@ -12,7 +12,7 @@ public class CadastroService {
     @Autowired
     private CadastroRepository cadastroRepository;
 
-    public Cadastro buscaCPF(String cpf){
+    public Cadastro buscarCPF(String cpf){
        return cadastroRepository.getByCpf(cpf);
     }
     
