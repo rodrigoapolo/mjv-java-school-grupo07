@@ -25,4 +25,7 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	@Query("SELECT MIN(c.pretencaoSalarial.pretencaoMinima) as salarialMinimo, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
 	SalarioMiminoView buscarSalarioMinimoProfissao(@Param("profissao") String profissao);
 
+	@Query("SELECT AVG(c.pretencaoSalarial.pretencaoMinima) as salarialMinimo, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
+	SalarioMiminoView buscarMediaSalarioMaximoProfissao(@Param("profissao") String profissao);
+
 }

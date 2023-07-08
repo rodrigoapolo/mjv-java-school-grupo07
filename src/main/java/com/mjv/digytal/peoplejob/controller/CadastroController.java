@@ -30,5 +30,11 @@ public class CadastroController {
         SalarioMiminoView salarioMimino = service.buscarSalarioMinimoProfissao(profissao);
         return ResponseEntity.ok().body(salarioMimino);
     }
+
+    @GetMapping(value = "/buscar-media-salarioMaximo-profissao/{profissao}")
+    public ResponseEntity<SalarioMiminoView> buscarMediaSalarioMinimoProfissao(@PathVariable String profissao) {
+        SalarioMiminoView salarioMimino = service.buscarMediaSalarioMaximoProfissao(profissao);
+        return ResponseEntity.ok().body(salarioMimino);
+    }
     
 }

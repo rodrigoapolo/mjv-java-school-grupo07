@@ -22,5 +22,9 @@ public class CadastroService {
     public SalarioMiminoView buscarSalarioMinimoProfissao(String profissao){
         return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
     }
+
+    public SalarioMiminoView buscarMediaSalarioMaximoProfissao(String profissao){
+        return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
+    }
     
 }
