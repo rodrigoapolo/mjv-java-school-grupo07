@@ -1,5 +1,6 @@
 package com.mjv.digytal.peoplejob.controller;
 
+import com.mjv.digytal.peoplejob.dto.view.SalarioMiminoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class CadastroController {
     public ResponseEntity<Cadastro> buscarCPF(@PathVariable String cpf) {
     	Cadastro c = service.buscarCPF(cpf);
     	return ResponseEntity.ok().body(c);
+    }
+
+    @GetMapping(value = "/buscar-salarioMinimo-profissao/{profissao}")
+    public ResponseEntity<SalarioMiminoView> buscarSalarioMinimoProfissao(@PathVariable String profissao) {
+        SalarioMiminoView salarioMimino = service.buscarSalarioMinimoProfissao(profissao);
+        return ResponseEntity.ok().body(salarioMimino);
     }
     
 }
