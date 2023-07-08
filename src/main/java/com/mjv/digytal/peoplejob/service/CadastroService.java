@@ -1,5 +1,6 @@
 package com.mjv.digytal.peoplejob.service;
 
+import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,14 @@ public class CadastroService {
 
     public Cadastro buscarCPF(String cpf){
        return cadastroRepository.getByCpf(cpf);
+    }
+
+    public SalarioProfissaoView buscarSalarioMinimoProfissao(String profissao){
+        return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
+    }
+
+    public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao){
+        return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
     }
     
 }
