@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.model.Experiencia;
-import com.mjv.digytal.peoplejob.repository.ExperienciaRepository;
+import com.mjv.digytal.peoplejob.dto.view.CadastroView;
+import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 
 @Service
 public class ExperienciaService {
 	
 	@Autowired
-	private ExperienciaRepository experienciaRepository;
+	private CadastroRepository experienciaRepository;
 	
-	public List<Experiencia> imprimirNaoTrabalhando(boolean empregoAtual) {
+	public List<CadastroView> imprimirNaoTrabalhando(boolean empregoAtual) {
 		
-		 List<Experiencia> candidatosNaoTrabalhando =
+		 List<CadastroView> candidatosNaoTrabalhando =
 				 experienciaRepository.findNotWorkingCandidates(empregoAtual);
 		 return candidatosNaoTrabalhando;
 		 
