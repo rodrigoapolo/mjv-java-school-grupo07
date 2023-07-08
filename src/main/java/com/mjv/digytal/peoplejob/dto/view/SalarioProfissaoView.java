@@ -1,7 +1,7 @@
 package com.mjv.digytal.peoplejob.dto.view;
 
 
-public interface SalarioMiminoView {
+public interface SalarioProfissaoView {
     String getProfissao();
-    Double getSalarialMinimo();
+    Double getSalario();
 }

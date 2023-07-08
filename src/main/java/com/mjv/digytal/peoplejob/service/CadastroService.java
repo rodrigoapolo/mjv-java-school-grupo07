@@ -1,13 +1,11 @@
 package com.mjv.digytal.peoplejob.service;
 
-import com.mjv.digytal.peoplejob.dto.view.SalarioMiminoView;
+import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
-
-import java.util.List;
 
 @Service
 public class CadastroService {
@@ -19,11 +17,11 @@ public class CadastroService {
        return cadastroRepository.getByCpf(cpf);
     }
 
-    public SalarioMiminoView buscarSalarioMinimoProfissao(String profissao){
+    public SalarioProfissaoView buscarSalarioMinimoProfissao(String profissao){
         return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
     }
 
-    public SalarioMiminoView buscarMediaSalarioMaximoProfissao(String profissao){
+    public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao){
         return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
     }
     

@@ -1,7 +1,7 @@
 package com.mjv.digytal.peoplejob.repository;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroView;
-import com.mjv.digytal.peoplejob.dto.view.SalarioMiminoView;
+import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 
 import java.util.List;
@@ -22,10 +22,10 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	@Query("SELECT c FROM Cadastro c WHERE c.experiencia.empregoAtual = :empregoAtual ORDER BY c.id")
 	List<CadastroView> findNotWorkingCandidates(@Param("empregoAtual") boolean empregoAtual);
 
-	@Query("SELECT MIN(c.pretencaoSalarial.pretencaoMinima) as salarialMinimo, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
-	SalarioMiminoView buscarSalarioMinimoProfissao(@Param("profissao") String profissao);
+	@Query("SELECT MIN(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
+	SalarioProfissaoView buscarSalarioMinimoProfissao(@Param("profissao") String profissao);
 
-	@Query("SELECT AVG(c.pretencaoSalarial.pretencaoMinima) as salarialMinimo, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
-	SalarioMiminoView buscarMediaSalarioMaximoProfissao(@Param("profissao") String profissao);
+	@Query("SELECT AVG(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
+	SalarioProfissaoView buscarMediaSalarioMaximoProfissao(@Param("profissao") String profissao);
 
 }
