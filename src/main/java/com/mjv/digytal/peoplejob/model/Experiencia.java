@@ -18,10 +18,10 @@ public class Experiencia {
     private LocalDate dataDesligamento;
     @Enumerated(EnumType.STRING)
     private RegimeContratacao regimeContratacao;
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "empresa_id",referencedColumnName = "id")
     private Empresa empresa;
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "profissao_id",referencedColumnName = "id")
     private Profissao profissao;
 }
