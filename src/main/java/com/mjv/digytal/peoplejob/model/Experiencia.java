@@ -9,7 +9,8 @@ import java.time.LocalDate;
 @Data
 @Table(name = "tb_experiencia")
 public class Experiencia {
-    @Id
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double salario;
@@ -24,4 +25,5 @@ public class Experiencia {
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "profissao_id",referencedColumnName = "id")
     private Profissao profissao;
+    
 }
