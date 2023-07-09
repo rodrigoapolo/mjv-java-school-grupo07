@@ -24,20 +24,21 @@ public class CadastroService {
 	}
 
 	public List<Cadastro> buscarCadastrosEntreDatas(LocalDate dataInicio, LocalDate dataFim) {
-		return cadastroRepository.findCadastroByDataNascimento(dataInicio, dataFim);
+		return cadastroRepository.buscarCadastrosPorDataNascimento(dataInicio, dataFim);
 	}
 
-	public List<Cadastro> buscarCandidatosPorCidadeEexperiencia() {
+	public List<Cadastro> buscarCadastrosPorCidadeEexperiencia(String cidade) {
 		List<Cadastro> cadastrosDeIniciantes = new ArrayList<>();
-		List<Cadastro> cadastros = cadastroRepository.findCadastroByCidade();
+		List<Cadastro> cadastros = cadastroRepository.buscarCadastrosPorCidade(cidade);
 		cadastros.stream().filter(cadastro -> cadastro.getExperiencias().size() == 0)
 				.forEach(cadastro -> cadastrosDeIniciantes.add(cadastro));
 		return cadastrosDeIniciantes;
 	}
 
-	public Integer buscarCandidatosAnalistasDeSistemas() {
-		List<Cadastro> cadastros = cadastroRepository.findCadastroByProfissao();
-		return cadastros.size();
+	public String buscarNumeroCadastrosPorProfissao(String profissao) {
+		Integer cadastros = cadastroRepository.contarCadastrosPorProfissao(profissao);
+		String resposta = "Número de cadastros " + cadastros;
+		return resposta;
 	}
 
 }

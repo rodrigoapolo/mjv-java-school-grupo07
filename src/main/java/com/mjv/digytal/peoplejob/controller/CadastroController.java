@@ -26,19 +26,19 @@ public class CadastroController {
 		return ResponseEntity.ok().body(c);
 	}
 
-	@GetMapping("/buscar-por-data-de-nascimento")
+	@GetMapping("/buscar-cadastros-por-data-de-nascimento")
 	public ResponseEntity<List<Cadastro>> buscarCadastrosEntreDatas(LocalDate dataInicio, LocalDate dataFim) {
 		return ResponseEntity.ok(service.buscarCadastrosEntreDatas(dataInicio, dataFim));
 	}
 
-	@GetMapping("/buscar-cadastro-por-cidade-e-experiencia")
-	public ResponseEntity<List<Cadastro>> buscarCandidatosPorCidadeEexperiencia() {
-		return ResponseEntity.ok(service.buscarCandidatosPorCidadeEexperiencia());
+	@GetMapping("/buscar-cadastros-por-cidade-e-experiencia")
+	public ResponseEntity<List<Cadastro>> buscarCadastrosPorCidadeEexperiencia(String cidade) {
+		return ResponseEntity.ok(service.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
 
-	@GetMapping("/buscar-cadastro-por-profissao")
-	public ResponseEntity<Integer> buscar_analista_de_sistemas() {
-		return ResponseEntity.ok(service.buscarCandidatosAnalistasDeSistemas());
+	@GetMapping("/buscar-quantidade-de-cadastro-por-profissao")
+	public ResponseEntity<String> buscarNumeroCadastrosPorProfissao(String profissao) {
+		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
 	}
 
 }
