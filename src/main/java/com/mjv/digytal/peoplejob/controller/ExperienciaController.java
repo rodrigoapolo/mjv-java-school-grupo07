@@ -24,9 +24,9 @@ public class ExperienciaController {
 	private ExperienciaService experienciaService;
 
 	@GetMapping(value = "/buscar-nao-trabalhando/{empregoAtual}")
-	public List<CadastroView> imprimirNaoTrabalhando(@PathParam("empregoAtual") boolean empregoAtual) {
+	public ResponseEntity<List<CadastroView>> imprimirNaoTrabalhando(@PathParam("empregoAtual") boolean empregoAtual) {
 		List<CadastroView> candidatosNaoTrabalhando = experienciaService.imprimirNaoTrabalhando(empregoAtual);
-		return candidatosNaoTrabalhando;
+		return ResponseEntity.ok().body(candidatosNaoTrabalhando);
 	}
 
 }

@@ -27,5 +27,5 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	
 	@Query("SELECT c FROM Cadastro c WHERE c.pretencaoSalarial.pretencaoMinima >= :salarioMinimoMenor AND c.pretencaoSalarial.pretencaoMinima < :salarioMinimoMaior")
 	List<CadastroViewPretensao> findIntervaloSalarioMinimo(@Param("salarioMinimoMenor") Double salarioMinimoMenor, @Param("salarioMinimoMaior") Double salarioMinimoMaior);
-	
+
 }
