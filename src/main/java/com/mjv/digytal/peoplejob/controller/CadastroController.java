@@ -1,5 +1,6 @@
 package com.mjv.digytal.peoplejob.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,18 @@ public class CadastroController {
 	}
 
 	@GetMapping("/buscar-por-data-de-nascimento")
-	public ResponseEntity<List<Cadastro>> buscarCadastroPorData() {
-		return ResponseEntity.ok(service.buscar_candidatos_entre_anos_oitenta_a_vinte_e_tres());
+	public ResponseEntity<List<Cadastro>> buscarCadastrosEntreDatas(LocalDate dataInicio, LocalDate dataFim) {
+		return ResponseEntity.ok(service.buscarCadastrosEntreDatas(dataInicio, dataFim));
 	}
 
-	@GetMapping("/buscar-cadastro-por-cidade")
-	public ResponseEntity<List<Cadastro>> buscar_candidato_por_cidade_e_experiencia() {
-		return ResponseEntity.ok(service.buscar_candidato_por_cidade_e_experiencia());
+	@GetMapping("/buscar-cadastro-por-cidade-e-experiencia")
+	public ResponseEntity<List<Cadastro>> buscarCandidatosPorCidadeEexperiencia() {
+		return ResponseEntity.ok(service.buscarCandidatosPorCidadeEexperiencia());
 	}
 
 	@GetMapping("/buscar-cadastro-por-profissao")
 	public ResponseEntity<Integer> buscar_analista_de_sistemas() {
-		return ResponseEntity.ok(service.buscar_analista_de_sistemas());
+		return ResponseEntity.ok(service.buscarCandidatosAnalistasDeSistemas());
 	}
 
 }
