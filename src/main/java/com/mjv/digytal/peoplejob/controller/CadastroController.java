@@ -28,7 +28,7 @@ public class CadastroController {
     	return ResponseEntity.ok().body(c);
     }
     
-    @GetMapping(value = "/buscar-intervalo-salariominimo/{salariominimomenor}/{salariominimomaior}")
+    @GetMapping(value = "/buscar-intervalos-salariominimo/{salariominimomenor}/{salariominimomaior}")
     public ResponseEntity<List<CadastroViewPretensao>> buscarIntervaloSalarioMinimo(
     		@PathVariable("salariominimomenor") Double salarioMinimoMenor,
     		@PathVariable("salariominimomaior") Double salarioMinimoMaior) {

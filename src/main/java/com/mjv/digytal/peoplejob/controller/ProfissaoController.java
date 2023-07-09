@@ -18,9 +18,9 @@ public class ProfissaoController {
 	@Autowired
 	private ProfissaoService profissaoService;
 
-	@GetMapping(value = "/buscar-nao-analista")
-	public ResponseEntity<List<CadastroViewProfissao>> imprimirNaoTrabalhando() {
-		List<CadastroViewProfissao> candidatosNaoAnalistas = profissaoService.imprimirNaoAnalistaDeSistemas();
+	@GetMapping(value = "/buscar-exceto-profissao")
+	public ResponseEntity<List<CadastroViewProfissao>> imprimirCandidatosExcetoProfissao(String nome) {
+		List<CadastroViewProfissao> candidatosNaoAnalistas = profissaoService.imprimirCandidatosExcetoProfissao(nome);
 		return ResponseEntity.ok().body(candidatosNaoAnalistas);
 	}
 }

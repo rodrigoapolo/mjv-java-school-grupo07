@@ -22,8 +22,8 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	@Query("SELECT c FROM Cadastro c WHERE c.experiencia.empregoAtual = :empregoAtual")
 	List<CadastroView> findNotWorkingCandidates(@Param("empregoAtual") boolean empregoAtual);
     
-	@Query("SELECT c FROM Cadastro c JOIN c.profissao p WHERE p.nome <> 'ANALISTA DE SISTEMAS'")
-	List<CadastroViewProfissao> findNotAnalistaDeSistemas();
+	@Query("SELECT c FROM Cadastro c JOIN c.profissao p WHERE p.nome <> ':nome'")
+	List<CadastroViewProfissao> findNotProfissao(@Param("nome") String nome);
 	
 	@Query("SELECT c FROM Cadastro c WHERE c.pretencaoSalarial.pretencaoMinima >= :salarioMinimoMenor AND c.pretencaoSalarial.pretencaoMinima < :salarioMinimoMaior")
 	List<CadastroViewPretensao> findIntervaloSalarioMinimo(@Param("salarioMinimoMenor") Double salarioMinimoMenor, @Param("salarioMinimoMaior") Double salarioMinimoMaior);

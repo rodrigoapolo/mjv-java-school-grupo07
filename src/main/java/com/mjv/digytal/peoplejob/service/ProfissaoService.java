@@ -19,8 +19,8 @@ public class ProfissaoService {
 	@Autowired
 	private CadastroRepository cadastroRepository;
 
-	public List<CadastroViewProfissao> imprimirNaoAnalistaDeSistemas() {
-		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.findNotAnalistaDeSistemas();
+	public List<CadastroViewProfissao> imprimirCandidatosExcetoProfissao(String nome) {
+		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.findNotProfissao(nome);
 		return candidatosNaoTrabalhando;
 	}
 
