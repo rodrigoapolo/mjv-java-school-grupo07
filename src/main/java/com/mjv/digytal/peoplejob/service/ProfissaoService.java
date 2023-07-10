@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 import com.mjv.digytal.peoplejob.repository.ProfissaoRepository;
 

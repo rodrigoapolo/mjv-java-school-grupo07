@@ -12,7 +12,6 @@ import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 
-// 3 - Localizar os candidatos que mencionara o salário mínimo maior igual a 1.900 e menor que 3.000
 
 @Repository
 public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {

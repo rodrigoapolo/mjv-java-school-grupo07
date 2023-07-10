@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
