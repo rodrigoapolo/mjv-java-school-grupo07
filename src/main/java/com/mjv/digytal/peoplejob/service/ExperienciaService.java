@@ -15,9 +15,11 @@ public class ExperienciaService {
 	private CadastroRepository experienciaRepository;
 	
 	public List<CadastroView> imprimirNaoTrabalhando(boolean empregoAtual) {
+		
 		 List<CadastroView> candidatosNaoTrabalhando =
 				 experienciaRepository.findNotWorkingCandidates(empregoAtual);
 		 return candidatosNaoTrabalhando;
+		 
 	}
 	
 }

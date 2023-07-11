@@ -1,8 +1,5 @@
 package com.mjv.digytal.peoplejob.controller;
 
-
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
@@ -12,11 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-
-import javax.websocket.server.PathParam;
-
 
 @RestController
 @RequestMapping(value = "/cadastro")
@@ -43,14 +35,4 @@ public class CadastroController {
         return ResponseEntity.ok().body(mediaSalarioMaximoProfissao);
     }
     
-    @GetMapping(value = "/buscar-intervalos-salariominimo/{salariominimomenor}/{salariominimomaior}")
-    public ResponseEntity<List<CadastroViewPretensao>> buscarIntervaloSalarioMinimo(
-    		@PathVariable("salariominimomenor") Double salarioMinimoMenor,
-    		@PathVariable("salariominimomaior") Double salarioMinimoMaior) {
-		
-    	List<CadastroViewPretensao> candidatosPorIntervaloSalMin = service
-				.buscarIntervaloSalarioMinimo(salarioMinimoMenor, salarioMinimoMaior);
-		
-		return ResponseEntity.ok().body(candidatosPorIntervaloSalMin);
-    }
 }

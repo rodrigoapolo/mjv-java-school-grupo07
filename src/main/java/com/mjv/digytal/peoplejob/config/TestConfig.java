@@ -38,8 +38,8 @@ public class TestConfig implements CommandLineRunner {
 		c1.setTelefone("11234568798");
 		
 		PretencaoSalarial pretencaoSalarial1 = new PretencaoSalarial();
-		pretencaoSalarial1.setPretencaoMaxima(2000.0);
-		pretencaoSalarial1.setPretencaoMinima(1950.0);
+		pretencaoSalarial1.setPretencaoMaxima(1800.0);
+		pretencaoSalarial1.setPretencaoMinima(1000.0);
 		c1.setPretencaoSalarial(pretencaoSalarial1);
 		c1.setSexo(Sexo.MASCULINO);
 		
