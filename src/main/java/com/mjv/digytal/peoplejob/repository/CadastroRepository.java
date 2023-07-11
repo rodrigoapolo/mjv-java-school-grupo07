@@ -22,6 +22,7 @@ import com.mjv.digytal.peoplejob.model.Cadastro;
 public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 
     Cadastro getByCpf(String cpf);
+    
 
 	@Query("SELECT c FROM Cadastro c WHERE c.experiencia.empregoAtual = :empregoAtual")
 	List<CadastroView> findNotWorkingCandidates(@Param("empregoAtual") boolean empregoAtual);
@@ -31,6 +32,10 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	
 	@Query("SELECT c FROM Cadastro c WHERE c.pretencaoSalarial.pretencaoMinima >= :salarioMinimoMenor AND c.pretencaoSalarial.pretencaoMinima < :salarioMinimoMaior")
 	List<CadastroViewPretensao> findIntervaloSalarioMinimo(@Param("salarioMinimoMenor") Double salarioMinimoMenor, @Param("salarioMinimoMaior") Double salarioMinimoMaior);
+
+	
+	@Query("SELECT c FROM Cadastro c WHERE c.experiencia.empregoAtual = :empregoAtual ORDER BY c.id")
+	List<CadastroView> findNotWorkingCandidates(@Param("empregoAtual") boolean empregoAtual);
 
 	@Query("SELECT MIN(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
 	SalarioProfissaoView buscarSalarioMinimoProfissao(@Param("profissao") String profissao);

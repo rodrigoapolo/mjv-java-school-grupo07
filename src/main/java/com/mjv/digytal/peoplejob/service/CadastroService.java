@@ -10,8 +10,6 @@ import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 
-import java.util.List;
-
 @Service
 public class CadastroService {
 	
