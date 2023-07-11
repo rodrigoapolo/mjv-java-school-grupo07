@@ -81,7 +81,7 @@ public class TestConfig implements CommandLineRunner {
 		empresa1.setNome("MJV");
 		experiencia1.setEmpresa(empresa1);
 		experiencia1.setProfissao(profissao1);
-		c1.setExperiencia(experiencia1);
+		c1.getExperiencias().add(experiencia1);
 
 		Cadastro c2 = new Cadastro();
 
@@ -135,7 +135,7 @@ public class TestConfig implements CommandLineRunner {
 		empresa2.setNome("MJV");
 		experiencia2.setEmpresa(empresa2);
 		experiencia2.setProfissao(profissao2);
-		c2.setExperiencia(experiencia2);
+		c2.getExperiencias().add(experiencia2);
 
 		cadastroList.add(c1);
 		cadastroList.add(c2);

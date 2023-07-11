@@ -41,9 +41,10 @@ public class Cadastro {
             inverseJoinColumns={@JoinColumn(name="habilidade_ID")})
     private Set<Habilidade> habilidades = new LinkedHashSet<>();
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "experiencia_id",referencedColumnName = "id")
-    private Experiencia experiencia;
+    @Setter(AccessLevel.PRIVATE)
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cadastro_id",referencedColumnName = "id")
+    private List<Experiencia> experiencias = new LinkedList<>();
 
 }
 
