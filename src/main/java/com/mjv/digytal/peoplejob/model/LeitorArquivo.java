@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LeitorArquivo{
@@ -14,6 +13,26 @@ public class LeitorArquivo{
         final Path arquivo = Paths.get(caminhoCompleto);
         List<String> linhas = Files.readAllLines(arquivo);
         return linhas;
+    }
+
+    private static PretencaoSalarial setPretencaoMinima(Double aDouble){
+        return null;
+    }
+
+    private static PretencaoSalarial setPretancaoMaxima(Double aDouble){
+        return null;
+    }
+
+    private static Celular setCelularNumero(String s) {
+        return null;
+    }
+
+    private static Celular setCelularWhats(Boolean s){
+        return null;
+    }
+
+    public static Endereco setEndereco(String s){
+        return null;
     }
 
     public static List<Cadastro> lerCsvCadastros(String caminhoCompleto) throws Exception{
@@ -32,10 +51,12 @@ public class LeitorArquivo{
 
             cadastro.setEmail(colunas [3]);
             cadastro.setTelefone(String.valueOf(colunas [4]));
-           // cadastro.setPretencaoSalarial(Double.valueOf(colunas [5]));
-            cadastro.setSexo(Sexo.valueOf(colunas [6].toUpperCase()));
-            //cadastro.setCelular(String.valueOf(colunas [7]));
-            //cadastro.setEndereco(String.valueOf(colunas[8]));
+            cadastro.setPretencaoSalarial(setPretencaoMinima(Double.valueOf(colunas [5])));
+            cadastro.setPretencaoSalarial(setPretancaoMaxima(Double.valueOf(colunas [6])));
+            cadastro.setSexo(Sexo.valueOf(colunas [7].toUpperCase()));
+            cadastro.setCelular(setCelularNumero(String.valueOf(colunas [8])));
+            cadastro.setCelular(setCelularWhats(Boolean.valueOf(colunas [9])));
+            cadastro.setEndereco(setEndereco(String.valueOf(colunas [10])));
 
             cadastros.add(cadastro);
         }

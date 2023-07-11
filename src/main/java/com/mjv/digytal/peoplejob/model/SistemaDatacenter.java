@@ -10,7 +10,7 @@ public class SistemaDatacenter {
 
     private static void lerAquivoCsv() {
         try {
-            List<Cadastro> cadastros = com.mjv.digytal.peoplejob.model.LeitorArquivo.lerCsvCadastros("C:\\jobby\\files\\cadastros.csv");
+            List<Cadastro> cadastros = com.mjv.digytal.peoplejob.model.LeitorArquivo.lerCsvCadastros("C:\\MJV\\files\\arquivo.csv");
             for(Cadastro cad: cadastros) {
                 System.out.println(cad);
             }
