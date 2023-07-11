@@ -4,7 +4,6 @@ package com.mjv.digytal.peoplejob.service;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
@@ -12,11 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.model.Cadastro;
-import com.mjv.digytal.peoplejob.repository.CadastroRepository;
-
-import java.util.List;
-
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 
@@ -38,7 +32,7 @@ public class CadastroService {
     }
 
     public List<CadastroViewPretensao> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor, Double salarioMinimoMaior) {
-    	return cadastroRepository.findIntervaloSalarioMinimo(salarioMinimoMenor, salarioMinimoMaior);
+    	return cadastroRepository.bucarIntervaloSalarioMinimoMaximo(salarioMinimoMenor, salarioMinimoMaior);
     }
 	public Cadastro cadastrar(Cadastro cadastro) {
 		return cadastroRepository.save(cadastro);
@@ -53,11 +47,7 @@ public class CadastroService {
 	}
 
 	public List<Cadastro> buscarCadastrosPorCidadeEexperiencia(String cidade) {
-		List<Cadastro> cadastrosDeIniciantes = new ArrayList<>();
-		List<Cadastro> cadastros = cadastroRepository.buscarCadastrosPorCidade(cidade);
-		cadastros.stream().filter(cadastro -> cadastro.getExperiencias().size() == 0)
-				.forEach(cadastro -> cadastrosDeIniciantes.add(cadastro));
-		return cadastrosDeIniciantes;
+		return cadastroRepository.buscarCadastrosPorCidade(cidade);
 	}
 
 	public QuantidadeProfissao buscarNumeroCadastrosPorProfissao(String profissao) {
