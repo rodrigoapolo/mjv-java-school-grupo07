@@ -40,7 +40,7 @@ public class CadastroController {
 		return ResponseEntity.ok(service.buscarCadastrosEntreDatas(dataInicio, dataFim));
 	}
 
-	@GetMapping("/buscar-cadastros-por-cidade-e-experiencia/{cidade}")
+	@GetMapping("/buscar-cadastros-cidade-naoexperiencia/{cidade}")
 	public ResponseEntity<List<Cadastro>> buscarCadastrosPorCidadeEexperiencia(@PathVariable String cidade) {
 		return ResponseEntity.ok(service.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
