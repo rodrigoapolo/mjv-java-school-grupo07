@@ -37,7 +37,7 @@ public class CadastroController {
 	}
 
 	@GetMapping("/buscar-quantidade-de-cadastro-por-profissao")
-	public ResponseEntity<String> buscarNumeroCadastrosPorProfissao(String profissao) {
+	public ResponseEntity<Integer> buscarNumeroCadastrosPorProfissao(String profissao) {
 		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
 	}
 

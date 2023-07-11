@@ -35,10 +35,9 @@ public class CadastroService {
 		return cadastrosDeIniciantes;
 	}
 
-	public String buscarNumeroCadastrosPorProfissao(String profissao) {
+	public Integer buscarNumeroCadastrosPorProfissao(String profissao) {
 		Integer cadastros = cadastroRepository.contarCadastrosPorProfissao(profissao);
-		String resposta = "Número de cadastros " + cadastros;
-		return resposta;
+		return cadastros;
 	}
 
 }
