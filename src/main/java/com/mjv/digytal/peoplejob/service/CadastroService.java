@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +36,8 @@ public class CadastroService {
 		return cadastrosDeIniciantes;
 	}
 
-	public String buscarNumeroCadastrosPorProfissao(String profissao) {
-		Integer cadastros = cadastroRepository.contarCadastrosPorProfissao(profissao);
-		String resposta = "Número de cadastros " + cadastros;
-		return resposta;
+	public QuantidadeProfissao buscarNumeroCadastrosPorProfissao(String profissao) {
+		return cadastroRepository.contarCadastrosPorProfissao(profissao);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.mjv.digytal.peoplejob.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +38,7 @@ public class CadastroController {
 	}
 
 	@GetMapping("/buscar-quantidade-de-cadastro-por-profissao")
-	public ResponseEntity<String> buscarNumeroCadastrosPorProfissao(String profissao) {
+	public ResponseEntity<QuantidadeProfissao> buscarNumeroCadastrosPorProfissao(String profissao) {
 		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
 	}
 
