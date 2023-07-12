@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<header>
+
+</header>
+<body>  
+  <form class="formulario">
+    <h1>People Job - Cadastro</h1>
+    <fieldset class="secao">
+      <h2>Pessoa</h2>
+      <p>
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome"/>
+      </p>
+          <p>
+        <label for="CPF">CPF:</label>
+        <input type="text" name="CPF" id="CPF"/>
+      </p>
+      <p>
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input type="text" name="dataNascimento" id="dataNascimento"/>
+      </p>
+      <p>
+        <label for="sexo">Sexo:</label>
+        <span>
+          <input type="radio" name="sexo" value="feminino"> Feminino
+        </span>
+        <span>
+          <input type="radio" name="sexo" value="masculino"> Masculino
+        </span>
+        <span>
+          <input type="radio" name="sexo" value="naoBinario"> Não Binário
+        </span>
+        <span>
+          <input type="radio" name="sexo" value="prefiroNaoDeclarar"> Prefiro Não Declarar
+        </span>
+      </p>
+      <p>
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" id="email"/>
+      </p>
+      <p>
+        <label for="telefone">Telefone:</label>
+        <input type="text" name="telefone" id="telefone"/>
+      </p>
+      <p>
+        <label for="celularPessoal">Celular Pessoal:</label>
+        <input type="text" name="celularPessoal" id="celularPessoal"/>
+      </p>
+      <p>
+        <label for="celularProfissional">Celular Profissional:</label>
+        <input type="text" name="celularProfissional" id="celularProfissional"/>
+      </p>
+      <p>
+        <label for="profissao">Profissão:</label>
+        <textarea cols="30" rows="5" name="profissao" id="profissao"></textarea>
+      </p>
+      <p>
+        <label for="pretençãoMinima">Pretenção Mínima:</label>
+        <input type="text" name="pretençãoMinima" id="pretençãoMinima"/>
+      </p>
+      <p>
+        <label for="pretençãoMaxima">Pretenção Máxima:</label>
+        <input type="text" name="pretençãoMáxima" id="pretençãoMáxima"/>
+      </p>
+      <p>
+        <label for="habilidades">Habilidades:</label>
+        <textarea cols="30" rows="5" name="habilidades" id="habilidades"></textarea>
+      </p>    
+    </fieldset>
+      
+    <fieldset class="secao">
+      <h2>Endereço</h2>
+      <p>
+        <label for="cep">CEP:</label>
+        <input type="text" name="cep" id="cep"/>
+      </p> 
+      <p>
+        <label for="">Logradouro:</label>
+        <input type="text" name="logradouro" id="logradouro"/>
+      </p> 
+      <p>
+        <label for="numero">Número:</label>
+        <input type="text" name="numero" id="numero"/>
+      </p> 
+      <p>
+        <label for="complemento">Complemento:</label>
+        <input type="text" name="complemento" id="complemento"/>
+      </p> 
+      <p>
+        <label for="bairro">Bairro:</label>
+        <input type="text" name="bairro" id="bairro"/>
+      </p> 
+      <p>
+        <label for="cidade">Cidade:</label>
+        <input type="text" name="cidade" id="cidade"/>
+      </p> 
+      <p>
+        <label for="estado">Estado:</label>
+        <input type="text" name="estado" id="estado"/>
+      </p> 
+      <p>
+        <label for="uf">UF:</label>
+        <input type="text" name="uf" id="uf"/>
+      </p> 
+
+    </fieldset>
+
+    <fieldset class="secao">
+      <h2>Experiências</h2> 
+      <p class="row">
+        <label for="empregoAtual">Emprego Atual:</label>
+        <input type="checkbox" name="empregoAtual" id="empregoAtual" value=""> 
+      </p> 
+      <p>
+        <label for="profissao">Profissão:</label>
+        <input type="text" name="profissao" id="profissao"/>
+      </p>  
+      <p>
+        <label for="salario">Salário:</label>
+        <input type="text" name="salario" id="salario"/>
+      </p>  
+      <p>
+        <label for="dataContratacao">Data Contratação:</label>
+        <input type="text" name="dataContratacao" id="dataContratacao"/>
+      </p> 
+      <p>
+        <label for="dataDesligamento">Data Desligamento:</label>
+        <input type="text" name="dataDesligamento" id="dataDesligamento"/>
+      </p> 
+      <p>
+        <label for="empresa">Empresa:</label>
+        <input type="text" name="empresa" id="empresa"/>
+      </p>  
+      <p>
+        <label for="regimeContracao">Regime Contração:</label>
+        <span><input type="radio" name="regimeContracao" value="clt"> CLT</span>
+        <span><input type="radio" name="regimeContracao" value="pj"> PJ</span>
+        <span><input type="radio" name="regimeContracao" value="cop"> COP</span>
+        <span><input type="radio" name="regimeContracao" value="aut"> AUT</span>
+      </p>
+
+    </fieldset>
+  </form>
+</body>
+</html>
