@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.mjv.digytal.peoplejob.dto.CadastroDto;
 import com.mjv.digytal.peoplejob.dto.view.CadastroView;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
@@ -45,5 +44,5 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	
 	@Query("SELECT c FROM Cadastro c JOIN c.endereco.cidade cidade WHERE c.sexo = :sexo AND cidade.sigla = :sigla")
 	List<Cadastro> buscarCandidatoPorSexoESigla(@Param("sexo") Sexo sexo, @Param("sigla") String sigla);
-	
+
 }

@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.CadastroDto;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
-
 
 @RestController
 @RequestMapping(value = "/cadastro")

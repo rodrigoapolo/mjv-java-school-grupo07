@@ -1,12 +1,11 @@
 package com.mjv.digytal.peoplejob.service;
 
-
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
