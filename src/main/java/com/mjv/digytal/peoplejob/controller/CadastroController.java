@@ -1,9 +1,7 @@
 package com.mjv.digytal.peoplejob.controller;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
-import com.mjv.digytal.peoplejob.model.Cadastro;
-import com.mjv.digytal.peoplejob.service.CadastroService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.mjv.digytal.peoplejob.dto.CadastroDto;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
+import com.mjv.digytal.peoplejob.model.Cadastro;
+import com.mjv.digytal.peoplejob.service.CadastroService;
 
 
 @RestController
@@ -49,4 +52,27 @@ public class CadastroController {
 		
 		return ResponseEntity.ok().body(candidatosPorIntervaloSalMin);
     }
+    
+    @GetMapping(value = "/buscar-candidato-por-habilidade/{habilidade}")
+    public ResponseEntity<List<CadastroViewHabilidade>> buscarCandidatoPorHabilidade(
+    		@PathVariable("habilidade") String habilidade
+    		) {
+    	
+    	List<CadastroViewHabilidade> cadastrosRelacionados = service
+    			.buscarCandidatoPorHabilidade(habilidade);
+    	
+    	return ResponseEntity.ok().body(cadastrosRelacionados);
+    }
+    
+    @GetMapping(value = "/buscar-candidato-por-sexo-e-sigla/{sexo}/{sigla}")
+    public ResponseEntity<List<Cadastro>> buscarCandidatoPorSexoESigla(
+    		@PathVariable("sexo") Character sexo, @PathVariable("sigla") String sigla
+    		) {
+    	
+    	List<Cadastro> cadastrosRelacionados = service
+    			.buscarCandidatoPorSexoESigla(sexo, sigla);
+    	
+    	return ResponseEntity.ok().body(cadastrosRelacionados);
+    }
+    
 }

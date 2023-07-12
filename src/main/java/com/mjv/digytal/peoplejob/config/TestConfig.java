@@ -127,7 +127,7 @@ public class TestConfig implements CommandLineRunner {
 		c2.setEndereco(endereco2);
 
 		Profissao profissao2 = new Profissao();
-		profissao2.setNome("Java");
+		profissao2.setNome("Java2");
 		c2.getProfissao().add(profissao2);
 
 		Habilidade habilidade2 = new Habilidade();

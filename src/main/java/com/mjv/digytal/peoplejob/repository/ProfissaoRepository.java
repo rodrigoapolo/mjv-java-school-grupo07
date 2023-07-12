@@ -8,4 +8,5 @@ import com.mjv.digytal.peoplejob.model.Profissao;
 @Repository
 public interface ProfissaoRepository extends JpaRepository<Profissao, Integer> {
 
+	Profissao findByNome(String nome);
 }
