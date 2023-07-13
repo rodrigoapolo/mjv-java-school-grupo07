@@ -64,5 +64,9 @@ public class CadastroService {
 	public List<CadastroDto> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
 		return cadastroRepository.buscarCandidatoPorSexoESigla(Sexo.valueOf(sexo), sigla);
 	}
-
+	
+	public Cadastro inserirCadastro(Cadastro cadastro) {
+		return cadastroRepository.save(cadastro);
+	}
+	
 }

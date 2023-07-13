@@ -29,7 +29,7 @@ public class ProfissaoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Profissao> inserirNovaProfissao(@RequestBody Profissao profissao) {
+	public ResponseEntity<Profissao> inserirProfissao(@RequestBody Profissao profissao) {
 		Profissao profissaoRetorno = profissaoService.inserirProfissao(profissao);
 		return ResponseEntity.ok().body(profissaoRetorno);
 	}

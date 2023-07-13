@@ -28,5 +28,6 @@ public class CidadeService {
 					cidade.getNome().toUpperCase()));
 		}
 	}
+	
 }
 
