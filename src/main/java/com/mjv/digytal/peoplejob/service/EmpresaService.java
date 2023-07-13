@@ -3,7 +3,6 @@ package com.mjv.digytal.peoplejob.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.exceptions.DuplicatedObjectExcetion;
 import com.mjv.digytal.peoplejob.model.Empresa;
 import com.mjv.digytal.peoplejob.repository.EmpresaRepository;
 
@@ -17,4 +16,7 @@ public class EmpresaService {
 		return empresaRepository.save(empresa);
 	}
 	
+	public void deletarEmpresaPorId(Integer id) {
+		empresaRepository.deleteById(id);
+	}
 }

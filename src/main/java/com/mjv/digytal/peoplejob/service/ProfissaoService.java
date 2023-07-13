@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.exceptions.DuplicatedObjectExcetion;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 import com.mjv.digytal.peoplejob.repository.ProfissaoRepository;
@@ -27,6 +26,10 @@ public class ProfissaoService {
 
 	public Profissao inserirProfissao(Profissao profissao) {
 		return profissaoRepository.save(profissao);
+	}
+	
+	public void deletarProfissaoPorId(Integer id) {
+		profissaoRepository.deleteById(id);
 	}
 	
 }

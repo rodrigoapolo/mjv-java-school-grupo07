@@ -24,4 +24,8 @@ public class ExperienciaService {
 	public Experiencia inserirExperiencia(Experiencia experiencia) {
 		return experienciaRepository.save(experiencia);
 	}
+	
+	public void deletarExperienciaPorId(Integer id) {
+		experienciaRepository.deleteById(id);
+	}
 }

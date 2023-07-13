@@ -69,4 +69,8 @@ public class CadastroService {
 		return cadastroRepository.save(cadastro);
 	}
 	
+	public void deletarCadastroPorId(Integer id) {
+		cadastroRepository.deleteById(id);
+	}
+	
 }

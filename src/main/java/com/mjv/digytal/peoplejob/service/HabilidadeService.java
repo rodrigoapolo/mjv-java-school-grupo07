@@ -24,4 +24,8 @@ public class HabilidadeService {
 		return habilidadeRepository.save(habilidade);
 	}
 	
+	public void deletarHabilidadePorId(Integer id) {
+		habilidadeRepository.deleteById(id);
+	}
+	
 }

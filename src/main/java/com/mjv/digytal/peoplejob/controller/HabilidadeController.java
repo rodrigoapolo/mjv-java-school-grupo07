@@ -2,6 +2,7 @@ package com.mjv.digytal.peoplejob.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,11 @@ public class HabilidadeController {
 	private ResponseEntity<Habilidade> inserirHabilidade(@RequestBody Habilidade habilidade) {
 		Habilidade habilidadeCriada = habilidadeService.inserirHabilidade(habilidade);
 		return ResponseEntity.ok().body(habilidadeCriada);
+	}
+	
+	@DeleteMapping(value = "deletar-habilidade-por-id/{id}")
+	public void deletarHabilidadePorId(@PathVariable Integer id) {
+		habilidadeService.deletarHabilidadePorId(id);
 	}
 	
 }

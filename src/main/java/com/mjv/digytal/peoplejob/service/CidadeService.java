@@ -3,7 +3,6 @@ package com.mjv.digytal.peoplejob.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.exceptions.DuplicatedObjectExcetion;
 import com.mjv.digytal.peoplejob.model.Cidade;
 import com.mjv.digytal.peoplejob.repository.CidadeRepository;
 
@@ -15,6 +14,10 @@ public class CidadeService {
 
 	public Cidade inserirCidade(Cidade cidade) {
 		return cidadeRepository.save(cidade);
+	}
+	
+	public void deletarCidadePorId(Integer id) {
+		cidadeRepository.deleteById(id);
 	}
 	
 }
