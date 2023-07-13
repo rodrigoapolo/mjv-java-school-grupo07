@@ -21,7 +21,7 @@ public class ProfissaoService {
 	private CadastroRepository cadastroRepository;
 
 	public List<CadastroViewProfissao> imprimirCandidatosExcetoProfissao(String nome) {
-		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.findNotProfissao(nome);
+		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.bucarNaoProfissao(nome);
 		return candidatosNaoTrabalhando;
 	}
 
