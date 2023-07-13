@@ -13,7 +13,7 @@ import com.mjv.digytal.peoplejob.model.Experiencia;
 @Repository
 public interface ExperienciaRepository extends JpaRepository<Experiencia, Integer> {
 
-    @Query(value = "SELECT c.*\n" +
+    @Query(value = "SELECT c.*, c.DATA_NASCIMENTO as dataNascimento\n" +
             "FROM TB_CADASTRO  c\n" +
             "INNER JOIN TB_EXPERIENCIA  e ON e.CADASTRO_ID  = c.ID\n" +
             "WHERE e.EMPREGO_ATUAL = :empregoAtual", nativeQuery = true)

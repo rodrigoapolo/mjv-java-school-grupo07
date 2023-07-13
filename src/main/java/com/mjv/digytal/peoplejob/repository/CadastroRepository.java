@@ -3,17 +3,13 @@ package com.mjv.digytal.peoplejob.repository;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.view.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mjv.digytal.peoplejob.dto.CadastroDto;
-import com.mjv.digytal.peoplejob.dto.QuantidadeProfissao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.model.Sexo;
 

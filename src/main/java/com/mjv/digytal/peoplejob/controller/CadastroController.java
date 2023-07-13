@@ -1,12 +1,11 @@
 package com.mjv.digytal.peoplejob.controller;
 
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
+import com.mjv.digytal.peoplejob.dto.view.*;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,6 @@ import java.util.List;
 import javax.websocket.server.PathParam;
 
 import com.mjv.digytal.peoplejob.dto.CadastroDto;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
