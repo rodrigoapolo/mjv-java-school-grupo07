@@ -12,6 +12,7 @@ import java.util.*;
 @Data
 @Table(name = "tb_cadastro")
 public class Cadastro {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

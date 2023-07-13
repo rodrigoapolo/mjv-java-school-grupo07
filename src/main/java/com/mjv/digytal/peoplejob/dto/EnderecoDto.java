@@ -1,14 +1,12 @@
 package com.mjv.digytal.peoplejob.dto;
 
-import lombok.Data;
+public interface EnderecoDto {
 
-@Data
-public class EnderecoDto {
-
-    private String cep;
-    private String logradouro;
-    private String numero;
-    private String complemento;
-    private String bairro;
-    private CidadeDto cidadeDto;
+    String getCep();
+    String getLogradouro();
+    String getNumero();
+    String getComplemento();
+    String getBairro();
+    CidadeDto getCidade();
+    
 }

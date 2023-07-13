@@ -2,13 +2,11 @@ package com.mjv.digytal.peoplejob.dto;
 
 import com.mjv.digytal.peoplejob.model.Sexo;
 
-import lombok.Data;
+public interface CadastroDto {
 
-@Data
-public class CadastroDto {
-
-	private String nome;
-	private String cpf;
-	private Sexo sexo;
-	private EnderecoDto enderecoDto;
+	String getNome();
+	String getCpf();
+	Sexo getSexo();
+	EnderecoDto getEndereco();
+	
 }

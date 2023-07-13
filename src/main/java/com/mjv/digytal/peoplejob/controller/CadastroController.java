@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mjv.digytal.peoplejob.dto.CadastroDto;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
@@ -63,11 +64,11 @@ public class CadastroController {
     }
     
     @GetMapping(value = "/buscar-candidato-por-sexo-e-sigla/{sexo}/{sigla}")
-    public ResponseEntity<List<Cadastro>> buscarCandidatoPorSexoESigla(
-    		@PathVariable("sexo") Character sexo, @PathVariable("sigla") String sigla
+    public ResponseEntity<List<CadastroDto>> buscarCandidatoPorSexoESigla(
+    		@PathVariable("sexo") String sexo, @PathVariable("sigla") String sigla
     		) {
     	
-    	List<Cadastro> cadastrosRelacionados = service
+    	List<CadastroDto> cadastrosRelacionados = service
     			.buscarCandidatoPorSexoESigla(sexo, sigla);
     	
     	return ResponseEntity.ok().body(cadastrosRelacionados);

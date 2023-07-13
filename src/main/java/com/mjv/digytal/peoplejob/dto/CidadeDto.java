@@ -1,10 +1,7 @@
 package com.mjv.digytal.peoplejob.dto;
 
-import lombok.Data;
+public interface CidadeDto {
 
-@Data
-public class CidadeDto {
-
-	private String nome;
+	String getNome();
 	
 }
