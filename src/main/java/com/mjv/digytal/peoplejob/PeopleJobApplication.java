@@ -1,5 +1,6 @@
 package com.mjv.digytal.peoplejob;
 
+import com.mjv.digytal.peoplejob.model.Sexo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
