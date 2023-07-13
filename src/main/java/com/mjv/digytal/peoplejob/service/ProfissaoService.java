@@ -26,19 +26,7 @@ public class ProfissaoService {
 	}
 
 	public Profissao inserirProfissao(Profissao profissao) {
-		validarProfissaoDuplicada(profissao);
 		return profissaoRepository.save(profissao);
-	}
-	
-	
-	public void validarProfissaoDuplicada(Profissao profissao) {
-		
-		Profissao profissaoEncontrada = profissaoRepository.findByNome(profissao.getNome());
-		
-		if (profissaoEncontrada != null && profissaoEncontrada.getId() != profissao.getId()) {
-			throw new DuplicatedObjectExcetion(String.format("A profissao %s já está cadastrada",
-					profissao.getNome().toUpperCase()));
-		}
 	}
 	
 }

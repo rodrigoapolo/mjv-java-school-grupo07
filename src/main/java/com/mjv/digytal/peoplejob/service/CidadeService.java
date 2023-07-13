@@ -14,19 +14,7 @@ public class CidadeService {
 	private CidadeRepository cidadeRepository;
 
 	public Cidade inserirCidade(Cidade cidade) {
-		validarCidadeDuplicada(cidade);
 		return cidadeRepository.save(cidade);
-	}
-	
-	
-	public void validarCidadeDuplicada(Cidade cidade) {
-		
-		Cidade cidadeEncontrada = cidadeRepository.findByNome(cidade.getNome());
-		
-		if (cidadeEncontrada != null && cidadeEncontrada.getId() != cidade.getId()) {
-			throw new DuplicatedObjectExcetion(String.format("A cidade %s já está cadastrada",
-					cidade.getNome().toUpperCase()));
-		}
 	}
 	
 }
