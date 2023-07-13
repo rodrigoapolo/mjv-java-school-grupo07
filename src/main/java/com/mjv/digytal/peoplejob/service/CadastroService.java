@@ -1,8 +1,5 @@
 package com.mjv.digytal.peoplejob.service;
 
-
-import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,12 +7,17 @@ import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mjv.digytal.peoplejob.dto.CadastroDto;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
+import com.mjv.digytal.peoplejob.model.Sexo;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 
 @Service
 public class CadastroService {
+	
     @Autowired
     private CadastroRepository cadastroRepository;
 
@@ -30,10 +32,11 @@ public class CadastroService {
     public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao){
         return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
     }
-
+    
     public List<CadastroViewPretensao> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor, Double salarioMinimoMaior) {
     	return cadastroRepository.bucarIntervaloSalarioMinimoMaximo(salarioMinimoMenor, salarioMinimoMaior);
     }
+
 	public Cadastro cadastrar(Cadastro cadastro) {
 		return cadastroRepository.save(cadastro);
 	}
@@ -52,6 +55,14 @@ public class CadastroService {
 
 	public QuantidadeProfissao buscarNumeroCadastrosPorProfissao(String profissao) {
 		return cadastroRepository.contarCadastrosPorProfissao(profissao);
+ 	}
+
+	public List<CadastroViewHabilidade> buscarCandidatoPorHabilidade(String habilidade) {
+		return cadastroRepository.buscarCandidatoPorHabilidade(habilidade);
+	}
+
+	public List<CadastroDto> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
+		return cadastroRepository.buscarCandidatoPorSexoESigla(Sexo.valueOf(sexo), sigla);
 	}
 
 }

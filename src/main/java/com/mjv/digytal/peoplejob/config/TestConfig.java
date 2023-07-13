@@ -1,16 +1,26 @@
 package com.mjv.digytal.peoplejob.config;
 
-import com.mjv.digytal.peoplejob.model.*;
-import com.mjv.digytal.peoplejob.repository.CadastroRepository;
+import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import com.mjv.digytal.peoplejob.model.Cadastro;
+import com.mjv.digytal.peoplejob.model.Celular;
+import com.mjv.digytal.peoplejob.model.Cidade;
+import com.mjv.digytal.peoplejob.model.Empresa;
+import com.mjv.digytal.peoplejob.model.Endereco;
+import com.mjv.digytal.peoplejob.model.Experiencia;
+import com.mjv.digytal.peoplejob.model.Habilidade;
+import com.mjv.digytal.peoplejob.model.PretencaoSalarial;
+import com.mjv.digytal.peoplejob.model.Profissao;
+import com.mjv.digytal.peoplejob.model.RegimeContratacao;
+import com.mjv.digytal.peoplejob.model.Sexo;
+import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 
 @Configuration
 @Profile("test")
