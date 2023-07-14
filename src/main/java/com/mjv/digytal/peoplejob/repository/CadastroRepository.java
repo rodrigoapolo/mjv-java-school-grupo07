@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.mjv.digytal.peoplejob.dto.view.CadastroView;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
@@ -24,10 +25,10 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
     Cadastro getByCpf(String cpf);
 
 	@Query("select c from Cadastro c where c.dataNascimento between :dataInicio and :dataFinal")
-	List<Cadastro> buscarCadastrosPorDataNascimento(LocalDate dataInicio, LocalDate dataFinal);
+	List<CadastroView> buscarCadastrosPorDataNascimento(LocalDate dataInicio, LocalDate dataFinal);
 
 	@Query("select c from Cadastro c INNER JOIN c.experiencias e where c.endereco.cidade.nome = :cidade AND e.empregoAtual = false ")
-	List<Cadastro> buscarCadastrosPorCidade(String cidade);
+	List<CadastroView> buscarCadastrosPorCidade(String cidade);
 
 	@Query("select count(c) as quantidade from Cadastro c INNER JOIN Profissao p on c.id = p.id where p.nome = :profissao")
 	QuantidadeProfissao contarCadastrosPorProfissao(String profissao);

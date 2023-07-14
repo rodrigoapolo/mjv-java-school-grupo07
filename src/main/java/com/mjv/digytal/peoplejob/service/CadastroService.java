@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.mjv.digytal.peoplejob.dto.view.CadastroView;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
@@ -35,6 +37,10 @@ public class CadastroService {
 	public SalarioProfissaoView buscarSalarioMinimoProfissao(String profissao) {
 		return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
 	}
+	
+	public int contarCandidatosPorHabilidades(String habilidade) {
+		return cadastroRepository.contarCandidatosJava(habilidade);
+	}
 
 	public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao) {
 		return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
@@ -45,11 +51,11 @@ public class CadastroService {
 		return cadastroRepository.bucarIntervaloSalarioMinimoMaximo(salarioMinimoMenor, salarioMinimoMaior);
 	}
 
-	public List<Cadastro> buscarCadastrosEntreDatas(LocalDate dataInicio, LocalDate dataFim) {
+	public List<CadastroView> buscarCadastrosEntreDatas(LocalDate dataInicio, LocalDate dataFim) {
 		return cadastroRepository.buscarCadastrosPorDataNascimento(dataInicio, dataFim);
 	}
 
-	public List<Cadastro> buscarCadastrosPorCidadeEexperiencia(String cidade) {
+	public List<CadastroView> buscarCadastrosPorCidadeEexperiencia(String cidade) {
 		return cadastroRepository.buscarCadastrosPorCidade(cidade);
 	}
 
@@ -63,6 +69,11 @@ public class CadastroService {
 
 	public List<CadastroViewSexoEndereco> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
 		return cadastroRepository.buscarCandidatoPorSexoESigla(Sexo.valueOf(sexo), sigla);
+	}
+
+	public List<CadastroViewProfissao> buscarCandidatosExcetoProfissao(String nome) {
+		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.buscarNaoProfissao(nome);
+		return candidatosNaoTrabalhando;
 	}
 
 	public Cadastro inserirCadastro(Cadastro cadastro) {

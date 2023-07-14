@@ -23,12 +23,6 @@ public class HabilidadeController {
 	@Autowired
 	private HabilidadeService habilidadeService;
 	
-	@GetMapping(value = "/contar-por-habilidade/{habilidade}")
-	private ResponseEntity<Integer> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
-		int quantidade = habilidadeService.contarCandidatosPorHabilidades(habilidade);
-		return ResponseEntity.ok().body(quantidade);
-	}
-	
 	@GetMapping(value = "/buscar-por-id/{id}")
 	public ResponseEntity<Habilidade> buscarPorId(@PathVariable Integer id) {
 		Habilidade habilidadeBusca = habilidadeService.buscarPorId(id).get();

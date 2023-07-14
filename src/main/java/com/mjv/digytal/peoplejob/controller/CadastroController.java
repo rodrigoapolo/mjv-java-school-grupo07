@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mjv.digytal.peoplejob.dto.view.CadastroView;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
@@ -46,14 +48,14 @@ public class CadastroController {
 	}
 	
 	@GetMapping(value = "/buscar-por-data-de-nascimento/{dataInicio}/{dataFim}")
-	public ResponseEntity<List<Cadastro>> buscarCadastrosEntreDatas(
+	public ResponseEntity<List<CadastroView>> buscarCadastrosEntreDatas(
 			@PathVariable("dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
 			@PathVariable("dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim) {
 		return ResponseEntity.ok(service.buscarCadastrosEntreDatas(dataInicio, dataFim));
 	}
 
 	@GetMapping(value = "/buscar-cadastros-cidade-naoexperiencia/{cidade}")
-	public ResponseEntity<List<Cadastro>> buscarCadastrosPorCidadeEexperiencia(@PathVariable String cidade) {
+	public ResponseEntity<List<CadastroView>> buscarCadastrosPorCidadeEexperiencia(@PathVariable String cidade) {
 		return ResponseEntity.ok(service.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
 
@@ -82,6 +84,18 @@ public class CadastroController {
 				.buscarIntervaloSalarioMinimo(salarioMinimoMenor, salarioMinimoMaior);
 		return ResponseEntity.ok().body(candidatosPorIntervaloSalMin);
     }
+    
+	@GetMapping(value = "/contar-por-habilidade/{habilidade}")
+	private ResponseEntity<Integer> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
+		int quantidade = service.contarCandidatosPorHabilidades(habilidade);
+		return ResponseEntity.ok().body(quantidade);
+	}
+
+	@GetMapping(value = "/buscar-exceto-profissao")
+	public ResponseEntity<List<CadastroViewProfissao>> imprimirCandidatosExcetoProfissao(String nome) {
+		List<CadastroViewProfissao> candidatosNaoAnalistas = service.buscarCandidatosExcetoProfissao(nome);
+		return ResponseEntity.ok().body(candidatosNaoAnalistas);
+	}
 
     @GetMapping(value = "/buscar-por-habilidade/{habilidade}")
     public ResponseEntity<List<CadastroViewHabilidade>> buscarCandidatoPorHabilidade(

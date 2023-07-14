@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
 import com.mjv.digytal.peoplejob.dto.view.CandidatoProfissaoView;
 import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
@@ -30,12 +29,6 @@ public class ProfissaoController {
 
 	@Autowired
 	private ProfissaoService profissaoService;
-
-	@GetMapping(value = "/buscar-exceto-profissao")
-	public ResponseEntity<List<CadastroViewProfissao>> imprimirCandidatosExcetoProfissao(String nome) {
-		List<CadastroViewProfissao> candidatosNaoAnalistas = profissaoService.imprimirCandidatosExcetoProfissao(nome);
-		return ResponseEntity.ok().body(candidatosNaoAnalistas);
-	}
 	
 	@GetMapping(value = "/buscar-por-id/{id}")
 	public ResponseEntity<Profissao> buscarPorId(@PathVariable Integer id) {
