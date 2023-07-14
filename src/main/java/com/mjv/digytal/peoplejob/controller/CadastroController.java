@@ -33,7 +33,7 @@ public class CadastroController {
     @Autowired
     private CadastroService service;
 
-	@GetMapping(value = "/busca-cpf/{cpf}")
+	@GetMapping(value = "/buscar-cpf/{cpf}")
 	public ResponseEntity<Cadastro> buscarCPF(@PathVariable String cpf) {
 		Cadastro cadastroBusca = service.buscarCPF(cpf);
 		return ResponseEntity.ok().body(cadastroBusca);

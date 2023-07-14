@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
+import com.mjv.digytal.peoplejob.dto.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 import com.mjv.digytal.peoplejob.repository.ProfissaoRepository;
@@ -38,7 +38,7 @@ public class ProfissaoService {
 	public void deletarProfissaoPorId(Integer id) {
 		profissaoRepository.deleteById(id);
 	}
-
+	
 	public Profissao atualizarProfissao(Integer id, Profissao profissao) {
 		Profissao profissaoSalvar = validarSeExiste(id);
 		BeanUtils.copyProperties(profissao, profissaoSalvar, "id");
@@ -52,6 +52,21 @@ public class ProfissaoService {
 		}
 		return profissaoOpt.get();
 	}
-	
+
+	public List<QuantidadeProfissaoPorCidadeView> agruparProfissaoCidade(String cidade){
+		return profissaoRepository.agruparProfissaoCidade(cidade);
+	}
+
+	public List<ProfissaoCandidatoView> buscarCandidatosProfissao(){
+		return profissaoRepository.buscarCandidatosProfissao();
+	}
+
+	public List<QuantidadeProfissionalView> contarProfissao(){
+		return profissaoRepository.contarProfissao();
+	}
+
+	public List<CandidatoProfissaoView> nomeProfissaoCandidatos(String profissao){
+		return profissaoRepository.nomeProfissaoCandidatos(profissao);
+	}
 	
 }

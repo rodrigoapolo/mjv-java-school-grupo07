@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
+import com.mjv.digytal.peoplejob.dto.view.CandidatoProfissaoView;
+import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissionalView;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.service.ProfissaoService;
 
@@ -55,5 +59,29 @@ public class ProfissaoController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarProfissaoPorId(@PathVariable Integer id) {
 		profissaoService.deletarProfissaoPorId(id);
+	}
+	
+	@GetMapping(value = "/agrupar-profissao-por-cidade/{cidade}")
+	public ResponseEntity<List<QuantidadeProfissaoPorCidadeView>> agruparProfissaoCidade(@PathVariable String cidade) {
+		List<QuantidadeProfissaoPorCidadeView> profissaoQuantidadeCidade = profissaoService.agruparProfissaoCidade(cidade);
+		return ResponseEntity.ok().body(profissaoQuantidadeCidade);
+	}
+
+	@GetMapping(value = "/profissao-candidato")
+	public ResponseEntity<List<ProfissaoCandidatoView>> buscarProfissaoCandidato() {
+		List<ProfissaoCandidatoView> profissaoCandidato = profissaoService.buscarCandidatosProfissao();
+		return ResponseEntity.ok().body(profissaoCandidato);
+	}
+
+	@GetMapping(value = "/contar-profissao")
+	public ResponseEntity<List<QuantidadeProfissionalView>> contarProfissao() {
+		List<QuantidadeProfissionalView> quantidadeProfissional = profissaoService.contarProfissao();
+		return ResponseEntity.ok().body(quantidadeProfissional);
+	}
+
+	@GetMapping(value = "/buscar-nome-profissao-candidato/{profissao}")
+	public ResponseEntity<List<CandidatoProfissaoView>> buscarNomeProfissaoCandidato(@PathVariable("profissao") String profissao) {
+		List<CandidatoProfissaoView> quantidadeProfissional = profissaoService.nomeProfissaoCandidatos(profissao);
+		return ResponseEntity.ok().body(quantidadeProfissional);
 	}
 }
