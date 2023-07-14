@@ -26,5 +26,10 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Integer> {
 			"GROUP BY p.NOME", nativeQuery = true)
 	List<QuantidadeProfissaoPorCidadeView> agruparProfissaoCidade(@Param("cidade") String cidade);
 
+	@Query(value = "SELECT c.NOME AS candidato, p.NOME AS profissao\n" +
+			"FROM TB_CADASTRO  c\n" +
+			"INNER JOIN PROFISSAO_CADASTRO  pc ON c.ID  = pc.CADASTRO_ID \n" +
+			"INNER JOIN TB_PROFISSAO p on p.ID = pc.PROFISSAO_ID",nativeQuery = true)
+	List<ProfissaoCandidatoView> buscarCandidatosProfissao();
 
 }

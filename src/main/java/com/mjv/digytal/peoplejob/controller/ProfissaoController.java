@@ -2,6 +2,7 @@ package com.mjv.digytal.peoplejob.controller;
 
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,5 +36,11 @@ public class ProfissaoController {
 	public ResponseEntity<List<QuantidadeProfissaoPorCidadeView>> agruparProfissaoCidade(@PathVariable String cidade) {
 		List<QuantidadeProfissaoPorCidadeView> profissaoQuantidadeCidade = profissaoService.agruparProfissaoCidade(cidade);
 		return ResponseEntity.ok().body(profissaoQuantidadeCidade);
+	}
+
+	@GetMapping(value = "/profissao-candidato")
+	public ResponseEntity<List<ProfissaoCandidatoView>> buscarProfissaoCandidato() {
+		List<ProfissaoCandidatoView> profissaoCandidato = profissaoService.buscarCandidatosProfissao();
+		return ResponseEntity.ok().body(profissaoCandidato);
 	}
 }

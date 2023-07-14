@@ -2,6 +2,8 @@ package com.mjv.digytal.peoplejob.service;
 
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,10 @@ public class ProfissaoService {
 
 	public List<QuantidadeProfissaoPorCidadeView> agruparProfissaoCidade(String cidade){
 		return profissaoRepository.agruparProfissaoCidade(cidade);
+	}
+
+	public List<ProfissaoCandidatoView> buscarCandidatosProfissao(){
+		return profissaoRepository.buscarCandidatosProfissao();
 	}
 
 }
