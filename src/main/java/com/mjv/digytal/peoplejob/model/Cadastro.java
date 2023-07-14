@@ -31,6 +31,7 @@ import lombok.Setter;
 public class Cadastro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.PRIVATE)
     private Integer id;
     private String nome;    
     private String cpf;
