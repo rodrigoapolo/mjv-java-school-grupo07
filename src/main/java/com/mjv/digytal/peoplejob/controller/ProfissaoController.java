@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.model.Experiencia;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.service.ProfissaoService;
 
@@ -34,19 +33,19 @@ public class ProfissaoController {
 		return ResponseEntity.ok().body(candidatosNaoAnalistas);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Experiencia> atualizarExperiencia(@PathVariable Integer id, @RequestBody Experiencia experiencia) {
-		Experiencia experienciaAtualizada = experienciaService.atualizarExperiencia(id, experiencia);
-		return ResponseEntity.ok().body(experienciaAtualizada);
+	@PutMapping("/atualizar-profissao/{id}")
+	public ResponseEntity<Profissao> atualizarProfissao(@PathVariable Integer id, @RequestBody Profissao profissao) {
+		Profissao profissaoAtualizada = profissaoService.atualizarProfissao(id, profissao);
+		return ResponseEntity.ok().body(profissaoAtualizada);
 	}
 	
-	@PostMapping
+	@PostMapping("/inserir-profissao")
 	public ResponseEntity<Profissao> inserirProfissao(@RequestBody Profissao profissao) {
 		Profissao profissaoRetorno = profissaoService.inserirProfissao(profissao);
 		return ResponseEntity.ok().body(profissaoRetorno);
 	}
 	
-	@DeleteMapping(value = "deletar-profissao-por-id/{id}")
+	@DeleteMapping(value = "/deletar-profissao-por-id/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarProfissaoPorId(@PathVariable Integer id) {
 		profissaoService.deletarProfissaoPorId(id);

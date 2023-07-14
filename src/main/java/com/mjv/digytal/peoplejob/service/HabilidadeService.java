@@ -8,7 +8,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.model.Habilidade;
-import com.mjv.digytal.peoplejob.model.Habilidade;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 import com.mjv.digytal.peoplejob.repository.HabilidadeRepository;
 
@@ -25,7 +24,7 @@ public class HabilidadeService {
 		return cadastroRepository.contarCandidatosJava(habilidade);
 	}
 	
-	public Optional<Habilidade> buscarPorId(Integer id) {
+	public Optional<Habilidade>	 buscarPorId(Integer id) {
 		return habilidadeRepository.findById(id);
 	}
 	

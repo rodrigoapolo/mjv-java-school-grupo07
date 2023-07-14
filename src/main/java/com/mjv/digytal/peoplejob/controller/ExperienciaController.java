@@ -34,19 +34,19 @@ public class ExperienciaController {
 		return ResponseEntity.ok().body(candidatosNaoTrabalhando);
 	}
 
-	@PostMapping
+	@PostMapping("/inserir-experiencia")
 	public ResponseEntity<Experiencia> inserirExperiencia(@RequestBody Experiencia experiencia) {
 		Experiencia experienciaCriada = experienciaService.inserirExperiencia(experiencia);
 		return ResponseEntity.ok().body(experienciaCriada);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/atualizar-experiencia/{id}")
 	public ResponseEntity<Experiencia> atualizarExperiencia(@PathVariable Integer id, @RequestBody Experiencia experiencia) {
 		Experiencia experienciaAtualizada = experienciaService.atualizarExperiencia(id, experiencia);
 		return ResponseEntity.ok().body(experienciaAtualizada);
 	}
 	
-	@DeleteMapping(value = "deletar-experiencia-por-id/{id}")
+	@DeleteMapping(value = "/deletar-experiencia-por-id/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarExperienciaPorId(@PathVariable Integer id) {
 		experienciaService.deletarExperienciaPorId(id);

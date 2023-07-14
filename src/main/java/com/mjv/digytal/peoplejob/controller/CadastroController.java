@@ -101,19 +101,19 @@ public class CadastroController {
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }
     
-    @PostMapping
+	@PostMapping("/inserir-cadastro")
     public ResponseEntity<Cadastro> inserirCadastro(@RequestBody Cadastro cadastro) {
     	Cadastro cadastroCriado = service.inserirCadastro(cadastro);
     	return ResponseEntity.ok().body(cadastroCriado);
     }
     
-    @PutMapping("/{id}")
+    @PutMapping("/atualizar-cadastro/{id}")
     public ResponseEntity<Cadastro> atualizarCadastro(@PathVariable Integer id, @RequestBody Cadastro cadastro) {
     	Cadastro cadastroAtualizado = service.atualizarCadastro(id, cadastro);
     	return ResponseEntity.ok().body(cadastroAtualizado);
     }
     
-    @DeleteMapping(value = "deletar-cadastro-por-id/{id}")
+    @DeleteMapping(value = "/deletar-cadastro-por-id/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarCadastro(@PathVariable Integer id) {
     	service.deletarCadastroPorId(id);

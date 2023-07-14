@@ -22,19 +22,19 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaService empresaService;
 	
-	@PostMapping
-	public ResponseEntity<Empresa> inserirNovaEmpresa(@RequestBody Empresa empresa) {
+	@PostMapping("/inserir-empresa")
+	public ResponseEntity<Empresa> inserirEmpresa(@RequestBody Empresa empresa) {
 		Empresa empresaRetorno = empresaService.inserirEmpresa(empresa);
 		return ResponseEntity.ok().body(empresaRetorno);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/atualizar-empresa/{id}")
 	public ResponseEntity<Empresa> atualizarEmpresa(@PathVariable Integer id, @RequestBody Empresa Empresa) {
 		Empresa empresaAtualizada = empresaService.atualizarEmpresa(id, Empresa);
 		return ResponseEntity.ok().body(empresaAtualizada);
 	}
 	
-	@DeleteMapping(value = "deletar-empresa-por-id/{id}")
+	@DeleteMapping(value = "/deletar-empresa-por-id/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarEmpresaPorId(@PathVariable Integer id) {
 		empresaService.deletarEmpresaPorId(id);
