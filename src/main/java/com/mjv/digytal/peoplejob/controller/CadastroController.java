@@ -39,7 +39,7 @@ public class CadastroController {
 		return ResponseEntity.ok().body(c);
 	}
 	
-	@GetMapping("/buscar-cadastros-por-data-de-nascimento/{dataInicio}/{dataFim}")
+	@GetMapping("/buscar-por-data-de-nascimento/{dataInicio}/{dataFim}")
 	public ResponseEntity<List<Cadastro>> buscarCadastrosEntreDatas(
 			@PathVariable("dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
 			@PathVariable("dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim) {
@@ -51,7 +51,7 @@ public class CadastroController {
 		return ResponseEntity.ok(service.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
 
-	@GetMapping("/buscar-quantidade-de-cadastro-por-profissao")
+	@GetMapping("/buscar-quantidade-por-profissao")
 	public ResponseEntity<QuantidadeProfissao> buscarNumeroCadastrosPorProfissao(String profissao) {
 		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
 	}
@@ -72,48 +72,42 @@ public class CadastroController {
     public ResponseEntity<List<CadastroViewPretensao>> buscarIntervaloSalarioMinimo(
     		@PathVariable("salariominimomenor") Double salarioMinimoMenor,
     		@PathVariable("salariominimomaior") Double salarioMinimoMaior) {
-		
     	List<CadastroViewPretensao> candidatosPorIntervaloSalMin = service
 				.buscarIntervaloSalarioMinimo(salarioMinimoMenor, salarioMinimoMaior);
-		
 		return ResponseEntity.ok().body(candidatosPorIntervaloSalMin);
     }
 
-    @GetMapping(value = "/buscar-candidato-por-habilidade/{habilidade}")
+    @GetMapping(value = "/buscar-por-habilidade/{habilidade}")
     public ResponseEntity<List<CadastroViewHabilidade>> buscarCandidatoPorHabilidade(
     		@PathVariable("habilidade") String habilidade
     		) {
-
     	List<CadastroViewHabilidade> cadastrosRelacionados = service
     			.buscarCandidatoPorHabilidade(habilidade);
-
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }
 
-    @GetMapping(value = "/buscar-candidato-por-sexo-e-sigla/{sexo}/{sigla}")
+    @GetMapping(value = "/buscar-por-sexo-e-sigla/{sexo}/{sigla}")
     public ResponseEntity<List<CadastroDto>> buscarCandidatoPorSexoESigla(
     		@PathVariable("sexo") String sexo, @PathVariable("sigla") String sigla
     		) {
-
     	List<CadastroDto> cadastrosRelacionados = service
     			.buscarCandidatoPorSexoESigla(sexo, sigla);
-
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }
     
-	@PostMapping("/inserir-cadastro")
+	@PostMapping("/inserir")
     public ResponseEntity<Cadastro> inserirCadastro(@RequestBody Cadastro cadastro) {
     	Cadastro cadastroCriado = service.inserirCadastro(cadastro);
     	return ResponseEntity.ok().body(cadastroCriado);
     }
     
-    @PutMapping("/atualizar-cadastro/{id}")
+    @PutMapping("/atualizar/{id}")
     public ResponseEntity<Cadastro> atualizarCadastro(@PathVariable Integer id, @RequestBody Cadastro cadastro) {
     	Cadastro cadastroAtualizado = service.atualizarCadastro(id, cadastro);
     	return ResponseEntity.ok().body(cadastroAtualizado);
     }
     
-    @DeleteMapping(value = "/deletar-cadastro-por-id/{id}")
+    @DeleteMapping(value = "/deletar-por-id/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarCadastro(@PathVariable Integer id) {
     	service.deletarCadastroPorId(id);

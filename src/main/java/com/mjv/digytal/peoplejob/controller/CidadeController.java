@@ -22,19 +22,19 @@ public class CidadeController {
 	@Autowired
 	private CidadeService cidadeService;
 	
-	@PostMapping("/inserir-cidade")
+	@PostMapping("/inserir")
 	public ResponseEntity<Cidade> inserirCidade(@RequestBody Cidade cidade) {
 		Cidade cidadeRetorno = cidadeService.inserirCidade(cidade);
 		return ResponseEntity.ok().body(cidadeRetorno);
 	}
 	
-	@PutMapping("/atualizar-cidade/{id}")
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Cidade> atualizarCidade(@PathVariable Integer id, @RequestBody Cidade cidade) {
 		Cidade cidadeAtualizada = cidadeService.atualizarCidade(id, cidade);
 		return ResponseEntity.ok().body(cidadeAtualizada);
 	}
 	
-    @DeleteMapping(value = "/deletar-cidade-por-id/{id}")
+    @DeleteMapping(value = "/deletar-por-id/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarCidadePorId(@PathVariable Integer id) {
 		cidadeService.deletarCidadePorId(id);

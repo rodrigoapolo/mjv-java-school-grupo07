@@ -33,19 +33,25 @@ public class ProfissaoController {
 		return ResponseEntity.ok().body(candidatosNaoAnalistas);
 	}
 	
-	@PutMapping("/atualizar-profissao/{id}")
+	@GetMapping(value = "/buscar-por-id/{id}")
+	public ResponseEntity<Profissao> buscarPorId(@PathVariable Integer id) {
+		Profissao profissao = profissaoService.buscarPorId(id).get();
+		return ResponseEntity.ok().body(profissao);
+	}
+	
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Profissao> atualizarProfissao(@PathVariable Integer id, @RequestBody Profissao profissao) {
 		Profissao profissaoAtualizada = profissaoService.atualizarProfissao(id, profissao);
 		return ResponseEntity.ok().body(profissaoAtualizada);
 	}
 	
-	@PostMapping("/inserir-profissao")
+	@PostMapping("/inserir")
 	public ResponseEntity<Profissao> inserirProfissao(@RequestBody Profissao profissao) {
 		Profissao profissaoRetorno = profissaoService.inserirProfissao(profissao);
 		return ResponseEntity.ok().body(profissaoRetorno);
 	}
 	
-	@DeleteMapping(value = "/deletar-profissao-por-id/{id}")
+	@DeleteMapping(value = "/deletar-por-id/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarProfissaoPorId(@PathVariable Integer id) {
 		profissaoService.deletarProfissaoPorId(id);

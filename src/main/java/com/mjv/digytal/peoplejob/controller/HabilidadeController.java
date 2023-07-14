@@ -23,25 +23,31 @@ public class HabilidadeController {
 	@Autowired
 	private HabilidadeService habilidadeService;
 	
-	@GetMapping(value = "/contar-candidatos-por-habilidade/{habilidade}")
+	@GetMapping(value = "/contar-por-habilidade/{habilidade}")
 	private ResponseEntity<Integer> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
 		int quantidade = habilidadeService.contarCandidatosPorHabilidades(habilidade);
 		return ResponseEntity.ok().body(quantidade);
 	}
 	
-	@PutMapping("/atualizar-habilidade/{id}")
+	@GetMapping(value = "/buscar-por-id/{id}")
+	public ResponseEntity<Habilidade> buscarPorId(@PathVariable Integer id) {
+		Habilidade habilidade = habilidadeService.buscarPorId(id).get();
+		return ResponseEntity.ok().body(habilidade);
+	}
+	
+	@PutMapping("/atualizar/{id}")
 	public ResponseEntity<Habilidade> atualizarHabilidade(@PathVariable Integer id, @RequestBody Habilidade habilidade) {
 		Habilidade habilidadeAtualizada = habilidadeService.atualizarHabilidade(id, habilidade);
 		return ResponseEntity.ok().body(habilidadeAtualizada);
 	}
 	
-	@PostMapping("/inserir-habilidade")
+	@PostMapping("/inserir")
 	private ResponseEntity<Habilidade> inserirHabilidade(@RequestBody Habilidade habilidade) {
 		Habilidade habilidadeCriada = habilidadeService.inserirHabilidade(habilidade);
 		return ResponseEntity.ok().body(habilidadeCriada);
 	}
 	
-	@DeleteMapping(value = "/deletar-habilidade-por-id/{id}")
+	@DeleteMapping(value = "/deletar-por-id/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarHabilidadePorId(@PathVariable Integer id) {
 		habilidadeService.deletarHabilidadePorId(id);
