@@ -57,9 +57,11 @@ public class TestConfig implements CommandLineRunner {
 		cidade1.setSigla("SP");
 		endereco1.setCidade(cidade1);
 		c1.setEndereco(endereco1);
+	
 		Profissao profissao1 = new Profissao();
 		profissao1.setNome("Java");
 		c1.getProfissao().add(profissao1);
+		
 		Habilidade habilidade1 = new Habilidade();
 		habilidade1.setNome("Java");
 		c1.getHabilidades().add(habilidade1);
