@@ -1,12 +1,12 @@
-package com.mjv.digytal.peoplejob.dto;
+package com.mjv.digytal.peoplejob.dto.view;
 
-public interface EnderecoDto {
+public interface EnderecoViewCidade {
 
     String getCep();
     String getLogradouro();
     String getNumero();
     String getComplemento();
     String getBairro();
-    CidadeDto getCidade();
+    CidadeView getCidade();
     
 }

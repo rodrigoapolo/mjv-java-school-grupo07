@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.CadastroDto;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
@@ -85,18 +85,16 @@ public class CadastroController {
 
     @GetMapping(value = "/buscar-por-habilidade/{habilidade}")
     public ResponseEntity<List<CadastroViewHabilidade>> buscarCandidatoPorHabilidade(
-    		@PathVariable("habilidade") String habilidade
-    		) {
+    		@PathVariable("habilidade") String habilidade) {
     	List<CadastroViewHabilidade> cadastrosRelacionados = service
     			.buscarCandidatoPorHabilidade(habilidade);
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }
 
     @GetMapping(value = "/buscar-por-sexo-e-sigla/{sexo}/{sigla}")
-    public ResponseEntity<List<CadastroDto>> buscarCandidatoPorSexoESigla(
-    		@PathVariable("sexo") String sexo, @PathVariable("sigla") String sigla
-    		) {
-    	List<CadastroDto> cadastrosRelacionados = service
+    public ResponseEntity<List<CadastroViewSexoEndereco>> buscarCandidatoPorSexoESigla(
+    		@PathVariable("sexo") String sexo, @PathVariable("sigla") String sigla) {
+    	List<CadastroViewSexoEndereco> cadastrosRelacionados = service
     			.buscarCandidatoPorSexoESigla(sexo, sigla);
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }

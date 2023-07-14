@@ -4,16 +4,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.dto.CadastroDto;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.model.Sexo;
@@ -62,7 +61,7 @@ public class CadastroService {
 		return cadastroRepository.buscarCandidatoPorHabilidade(habilidade);
 	}
 
-	public List<CadastroDto> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
+	public List<CadastroViewSexoEndereco> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
 		return cadastroRepository.buscarCandidatoPorSexoESigla(Sexo.valueOf(sexo), sigla);
 	}
 
