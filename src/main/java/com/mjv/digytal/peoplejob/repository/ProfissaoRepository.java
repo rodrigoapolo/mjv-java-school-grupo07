@@ -2,6 +2,7 @@ package com.mjv.digytal.peoplejob.repository;
 
 import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissionalView;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
@@ -32,4 +33,9 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Integer> {
 			"INNER JOIN TB_PROFISSAO p on p.ID = pc.PROFISSAO_ID",nativeQuery = true)
 	List<ProfissaoCandidatoView> buscarCandidatosProfissao();
 
+	@Query(value = "SELECT p.NOME AS Profissao, COUNT(*) AS total\n" +
+			"FROM TB_PROFISSAO p\n" +
+			"INNER JOIN PROFISSAO_CADASTRO pc ON p.ID = pc.PROFISSAO_ID\n" +
+			"GROUP BY p.NOME", nativeQuery = true)
+	List<QuantidadeProfissionalView> contarProfissao();
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissionalView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +43,11 @@ public class ProfissaoController {
 	public ResponseEntity<List<ProfissaoCandidatoView>> buscarProfissaoCandidato() {
 		List<ProfissaoCandidatoView> profissaoCandidato = profissaoService.buscarCandidatosProfissao();
 		return ResponseEntity.ok().body(profissaoCandidato);
+	}
+
+	@GetMapping(value = "/contar-profissao")
+	public ResponseEntity<List<QuantidadeProfissionalView>> contarProfissao() {
+		List<QuantidadeProfissionalView> quantidadeProfissional = profissaoService.contarProfissao();
+		return ResponseEntity.ok().body(quantidadeProfissional);
 	}
 }
