@@ -1,24 +1,29 @@
 package com.mjv.digytal.peoplejob.controller;
 
 
-import com.mjv.digytal.peoplejob.dto.view.*;
-import com.mjv.digytal.peoplejob.model.Cadastro;
-import com.mjv.digytal.peoplejob.service.CadastroService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.websocket.server.PathParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.CadastroDto;
+import com.mjv.digytal.peoplejob.dto.view.CadastroView;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
@@ -30,25 +35,31 @@ public class CadastroController {
     @Autowired
     private CadastroService service;
 
-	@GetMapping(value = "/busca-cpf/{cpf}")
-	public ResponseEntity<Cadastro> buscaCPF(@PathVariable String cpf) {
-		Cadastro c = service.buscaCPF(cpf);
-		return ResponseEntity.ok().body(c);
+	@GetMapping(value = "/buscar-cpf/{cpf}")
+	public ResponseEntity<Cadastro> buscarCPF(@PathVariable String cpf) {
+		Cadastro cadastroBusca = service.buscarCPF(cpf);
+		return ResponseEntity.ok().body(cadastroBusca);
 	}
-
-	@GetMapping("/buscar-cadastros-por-data-de-nascimento/{dataInicio}/{dataFim}")
-	public ResponseEntity<List<Cadastro>> buscarCadastrosEntreDatas(
+	
+	@GetMapping(value = "/buscar-por-id/{id}")
+	public ResponseEntity<Cadastro> buscarPorId(@PathVariable Integer id) {
+		Cadastro cadastroBusca = service.buscarPorId(id).get();
+		return ResponseEntity.ok().body(cadastroBusca);
+	}
+	
+	@GetMapping(value = "/buscar-por-data-de-nascimento/{dataInicio}/{dataFim}")
+	public ResponseEntity<List<CadastroView>> buscarCadastrosEntreDatas(
 			@PathVariable("dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
 			@PathVariable("dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim) {
 		return ResponseEntity.ok(service.buscarCadastrosEntreDatas(dataInicio, dataFim));
 	}
 
-	@GetMapping("/buscar-cadastros-cidade-naoexperiencia/{cidade}")
-	public ResponseEntity<List<Cadastro>> buscarCadastrosPorCidadeEexperiencia(@PathVariable String cidade) {
+	@GetMapping(value = "/buscar-cadastros-cidade-naoexperiencia/{cidade}")
+	public ResponseEntity<List<CadastroView>> buscarCadastrosPorCidadeEexperiencia(@PathVariable String cidade) {
 		return ResponseEntity.ok(service.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
 
-	@GetMapping("/buscar-quantidade-de-cadastro-por-profissao")
+	@GetMapping(value = "/buscar-quantidade-por-profissao")
 	public ResponseEntity<QuantidadeProfissao> buscarNumeroCadastrosPorProfissao(String profissao) {
 		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
 	}
@@ -69,33 +80,55 @@ public class CadastroController {
     public ResponseEntity<List<CadastroViewPretensao>> buscarIntervaloSalarioMinimo(
     		@PathVariable("salariominimomenor") Double salarioMinimoMenor,
     		@PathVariable("salariominimomaior") Double salarioMinimoMaior) {
-		
     	List<CadastroViewPretensao> candidatosPorIntervaloSalMin = service
 				.buscarIntervaloSalarioMinimo(salarioMinimoMenor, salarioMinimoMaior);
-		
 		return ResponseEntity.ok().body(candidatosPorIntervaloSalMin);
     }
+    
+	@GetMapping(value = "/contar-por-habilidade/{habilidade}")
+	private ResponseEntity<Integer> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
+		int quantidade = service.contarCandidatosPorHabilidades(habilidade);
+		return ResponseEntity.ok().body(quantidade);
+	}
 
-    @GetMapping(value = "/buscar-candidato-por-habilidade/{habilidade}")
+	@GetMapping(value = "/buscar-exceto-profissao")
+	public ResponseEntity<List<CadastroViewProfissao>> imprimirCandidatosExcetoProfissao(String nome) {
+		List<CadastroViewProfissao> candidatosNaoAnalistas = service.buscarCandidatosExcetoProfissao(nome);
+		return ResponseEntity.ok().body(candidatosNaoAnalistas);
+	}
+
+    @GetMapping(value = "/buscar-por-habilidade/{habilidade}")
     public ResponseEntity<List<CadastroViewHabilidade>> buscarCandidatoPorHabilidade(
-    		@PathVariable("habilidade") String habilidade
-    		) {
-
+    		@PathVariable("habilidade") String habilidade) {
     	List<CadastroViewHabilidade> cadastrosRelacionados = service
     			.buscarCandidatoPorHabilidade(habilidade);
-
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }
 
-    @GetMapping(value = "/buscar-candidato-por-sexo-e-sigla/{sexo}/{sigla}")
-    public ResponseEntity<List<CadastroDto>> buscarCandidatoPorSexoESigla(
-    		@PathVariable("sexo") String sexo, @PathVariable("sigla") String sigla
-    		) {
-
-    	List<CadastroDto> cadastrosRelacionados = service
+    @GetMapping(value = "/buscar-por-sexo-e-sigla/{sexo}/{sigla}")
+    public ResponseEntity<List<CadastroViewSexoEndereco>> buscarCandidatoPorSexoESigla(
+    		@PathVariable("sexo") String sexo, @PathVariable("sigla") String sigla) {
+    	List<CadastroViewSexoEndereco> cadastrosRelacionados = service
     			.buscarCandidatoPorSexoESigla(sexo, sigla);
-
     	return ResponseEntity.ok().body(cadastrosRelacionados);
+    }
+    
+	@PostMapping(value = "/inserir")
+    public ResponseEntity<Cadastro> inserirCadastro(@RequestBody Cadastro cadastro) {
+    	Cadastro cadastroCriado = service.inserirCadastro(cadastro);
+    	return ResponseEntity.ok().body(cadastroCriado);
+    }
+    
+    @PutMapping(value = "/atualizar/{id}")
+    public ResponseEntity<Cadastro> atualizarCadastro(@PathVariable Integer id, @RequestBody Cadastro cadastro) {
+    	Cadastro cadastroAtualizado = service.atualizarCadastro(id, cadastro);
+    	return ResponseEntity.ok().body(cadastroAtualizado);
+    }
+    
+    @DeleteMapping(value = "/deletar-por-id/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarCadastro(@PathVariable Integer id) {
+    	service.deletarCadastroPorId(id);
     }
 
 }
