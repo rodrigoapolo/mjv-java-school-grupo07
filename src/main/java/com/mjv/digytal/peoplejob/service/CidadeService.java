@@ -15,7 +15,7 @@ public class CidadeService {
 	public Cidade inserirCidade(Cidade cidade) {
 		return cidadeRepository.save(cidade);
 	}
-	
+
 	public void deletarCidadePorId(Integer id) {
 		cidadeRepository.deleteById(id);
 	}
