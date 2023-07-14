@@ -29,7 +29,7 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	QuantidadeProfissao contarCadastrosPorProfissao(String profissao);
 
 	@Query("SELECT c FROM Cadastro c JOIN c.profissao p WHERE p.nome <> :nome")
-	List<CadastroViewProfissao> bucarNaoProfissao(@Param("nome") String nome);
+	List<CadastroViewProfissao> buscarNaoProfissao(@Param("nome") String nome);
 	
 	@Query("SELECT c FROM Cadastro c WHERE c.pretencaoSalarial.pretencaoMinima >= :salarioMinimoMenor AND c.pretencaoSalarial.pretencaoMinima < :salarioMinimoMaior")
 	List<CadastroViewPretensao> bucarIntervaloSalarioMinimoMaximo(@Param("salarioMinimoMenor") Double salarioMinimoMenor, @Param("salarioMinimoMaior") Double salarioMinimoMaior);

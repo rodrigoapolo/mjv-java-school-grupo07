@@ -2,9 +2,13 @@ package com.mjv.digytal.peoplejob.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.dto.CadastroDto;
@@ -17,32 +21,29 @@ import com.mjv.digytal.peoplejob.repository.CadastroRepository;
 
 @Service
 public class CadastroService {
-	
-    @Autowired
-    private CadastroRepository cadastroRepository;
 
-    public Cadastro buscarCPF(String cpf){
-       return cadastroRepository.getByCpf(cpf);
-    }
+	@Autowired
+	private CadastroRepository cadastroRepository;
 
-    public SalarioProfissaoView buscarSalarioMinimoProfissao(String profissao){
-        return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
-    }
-
-    public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao){
-        return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
-    }
-    
-    public List<CadastroViewPretensao> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor, Double salarioMinimoMaior) {
-    	return cadastroRepository.bucarIntervaloSalarioMinimoMaximo(salarioMinimoMenor, salarioMinimoMaior);
-    }
-
-	public Cadastro cadastrar(Cadastro cadastro) {
-		return cadastroRepository.save(cadastro);
+	public Optional<Cadastro> buscarPorId(Integer id) {
+		return cadastroRepository.findById(id);
 	}
 
-	public Cadastro buscaCPF(String cpf) {
+	public Cadastro buscarCPF(String cpf) {
 		return cadastroRepository.getByCpf(cpf);
+	}
+
+	public SalarioProfissaoView buscarSalarioMinimoProfissao(String profissao) {
+		return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
+	}
+
+	public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao) {
+		return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
+	}
+
+	public List<CadastroViewPretensao> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor,
+			Double salarioMinimoMaior) {
+		return cadastroRepository.bucarIntervaloSalarioMinimoMaximo(salarioMinimoMenor, salarioMinimoMaior);
 	}
 
 	public List<Cadastro> buscarCadastrosEntreDatas(LocalDate dataInicio, LocalDate dataFim) {
@@ -55,7 +56,7 @@ public class CadastroService {
 
 	public QuantidadeProfissao buscarNumeroCadastrosPorProfissao(String profissao) {
 		return cadastroRepository.contarCadastrosPorProfissao(profissao);
- 	}
+	}
 
 	public List<CadastroViewHabilidade> buscarCandidatoPorHabilidade(String habilidade) {
 		return cadastroRepository.buscarCandidatoPorHabilidade(habilidade);
@@ -64,13 +65,27 @@ public class CadastroService {
 	public List<CadastroDto> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
 		return cadastroRepository.buscarCandidatoPorSexoESigla(Sexo.valueOf(sexo), sigla);
 	}
-	
+
 	public Cadastro inserirCadastro(Cadastro cadastro) {
 		return cadastroRepository.save(cadastro);
 	}
-	
+
 	public void deletarCadastroPorId(Integer id) {
 		cadastroRepository.deleteById(id);
+	}
+
+	public Cadastro atualizarCadastro(Integer id, Cadastro cadastro) {
+		Cadastro cadastroSalvar = validarSeExiste(id);
+		BeanUtils.copyProperties(cadastro, cadastroSalvar, "id");
+		return cadastroRepository.save(cadastroSalvar);
+	}
+	
+	private Cadastro validarSeExiste(Integer id) {
+		Optional<Cadastro> cadastroOpt = buscarPorId(id);
+		if (!cadastroOpt.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return cadastroOpt.get();
 	}
 	
 }

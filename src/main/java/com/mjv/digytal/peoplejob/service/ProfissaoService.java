@@ -1,8 +1,11 @@
 package com.mjv.digytal.peoplejob.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
@@ -20,7 +23,7 @@ public class ProfissaoService {
 	private CadastroRepository cadastroRepository;
 
 	public List<CadastroViewProfissao> imprimirCandidatosExcetoProfissao(String nome) {
-		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.bucarNaoProfissao(nome);
+		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.buscarNaoProfissao(nome);
 		return candidatosNaoTrabalhando;
 	}
 
@@ -28,8 +31,27 @@ public class ProfissaoService {
 		return profissaoRepository.save(profissao);
 	}
 	
+	public Optional<Profissao> buscarPorId(Integer id) {
+		return profissaoRepository.findById(id);
+	}
+	
 	public void deletarProfissaoPorId(Integer id) {
 		profissaoRepository.deleteById(id);
 	}
+
+	public Profissao atualizarProfissao(Integer id, Profissao profissao) {
+		Profissao profissaoSalvar = validarSeExiste(id);
+		BeanUtils.copyProperties(profissao, profissaoSalvar, "id");
+		return profissaoRepository.save(profissaoSalvar);
+	}
+	
+	private Profissao validarSeExiste(Integer id) {
+		Optional<Profissao> profissaoOpt = buscarPorId(id);
+		if (!profissaoOpt.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return profissaoOpt.get();
+	}
+	
 	
 }

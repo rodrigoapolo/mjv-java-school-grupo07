@@ -6,13 +6,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mjv.digytal.peoplejob.dto.CadastroDto;
@@ -32,10 +35,10 @@ public class CadastroController {
 
 	@GetMapping(value = "/busca-cpf/{cpf}")
 	public ResponseEntity<Cadastro> buscaCPF(@PathVariable String cpf) {
-		Cadastro c = service.buscaCPF(cpf);
+		Cadastro c = service.buscarCPF(cpf);
 		return ResponseEntity.ok().body(c);
 	}
-
+	
 	@GetMapping("/buscar-cadastros-por-data-de-nascimento/{dataInicio}/{dataFim}")
 	public ResponseEntity<List<Cadastro>> buscarCadastrosEntreDatas(
 			@PathVariable("dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
@@ -104,7 +107,14 @@ public class CadastroController {
     	return ResponseEntity.ok().body(cadastroCriado);
     }
     
+    @PutMapping("/{id}")
+    public ResponseEntity<Cadastro> atualizarCadastro(@PathVariable Integer id, @RequestBody Cadastro cadastro) {
+    	Cadastro cadastroAtualizado = service.atualizarCadastro(id, cadastro);
+    	return ResponseEntity.ok().body(cadastroAtualizado);
+    }
+    
     @DeleteMapping(value = "deletar-cadastro-por-id/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarCadastro(@PathVariable Integer id) {
     	service.deletarCadastroPorId(id);
     }
