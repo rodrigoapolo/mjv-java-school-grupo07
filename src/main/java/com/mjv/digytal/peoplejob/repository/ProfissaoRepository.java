@@ -1,5 +1,6 @@
 package com.mjv.digytal.peoplejob.repository;
 
+import com.mjv.digytal.peoplejob.dto.view.CandidatoProfissaoView;
 import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
 import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissionalView;
@@ -38,4 +39,11 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Integer> {
 			"INNER JOIN PROFISSAO_CADASTRO pc ON p.ID = pc.PROFISSAO_ID\n" +
 			"GROUP BY p.NOME", nativeQuery = true)
 	List<QuantidadeProfissionalView> contarProfissao();
+
+	@Query(value = "SELECT c.NOME AS nome, p.NOME AS profissao\n" +
+			"FROM TB_CADASTRO  c\n" +
+			"INNER JOIN PROFISSAO_CADASTRO  pc ON c.ID  = pc.CADASTRO_ID \n" +
+			"INNER JOIN TB_PROFISSAO p on p.ID = pc.PROFISSAO_ID\n" +
+			"WHERE LOWER(p.NOME) = LOWER(:profissao)", nativeQuery = true)
+	List<CandidatoProfissaoView> nomeProfissaoCandidatos(@Param("profissao") String profissao);
 }

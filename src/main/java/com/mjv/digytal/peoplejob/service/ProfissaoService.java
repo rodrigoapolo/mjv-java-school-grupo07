@@ -39,4 +39,8 @@ public class ProfissaoService {
 	public List<QuantidadeProfissionalView> contarProfissao(){
 		return profissaoRepository.contarProfissao();
 	}
+
+	public List<CandidatoProfissaoView> nomeProfissaoCandidatos(String profissao){
+		return profissaoRepository.nomeProfissaoCandidatos(profissao);
+	}
 }
