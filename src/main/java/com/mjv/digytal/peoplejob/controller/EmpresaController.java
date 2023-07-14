@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,13 +23,19 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaService empresaService;
 	
-	@PostMapping("/inserir")
+	@GetMapping(value = "/buscar-por-id/{id}")
+	public ResponseEntity<Empresa> buscarPorId(@PathVariable Integer id) {
+		Empresa empresaBusca = empresaService.buscarPorId(id).get();
+		return ResponseEntity.ok().body(empresaBusca);
+	}
+	
+	@PostMapping(value = "/inserir")
 	public ResponseEntity<Empresa> inserirEmpresa(@RequestBody Empresa empresa) {
 		Empresa empresaRetorno = empresaService.inserirEmpresa(empresa);
 		return ResponseEntity.ok().body(empresaRetorno);
 	}
 	
-	@PutMapping("/atualizar/{id}")
+	@PutMapping(value = "/atualizar/{id}")
 	public ResponseEntity<Empresa> atualizarEmpresa(@PathVariable Integer id, @RequestBody Empresa Empresa) {
 		Empresa empresaAtualizada = empresaService.atualizarEmpresa(id, Empresa);
 		return ResponseEntity.ok().body(empresaAtualizada);

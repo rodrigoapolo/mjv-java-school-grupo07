@@ -34,24 +34,30 @@ public class CadastroController {
     private CadastroService service;
 
 	@GetMapping(value = "/busca-cpf/{cpf}")
-	public ResponseEntity<Cadastro> buscaCPF(@PathVariable String cpf) {
-		Cadastro c = service.buscarCPF(cpf);
-		return ResponseEntity.ok().body(c);
+	public ResponseEntity<Cadastro> buscarCPF(@PathVariable String cpf) {
+		Cadastro cadastroBusca = service.buscarCPF(cpf);
+		return ResponseEntity.ok().body(cadastroBusca);
 	}
 	
-	@GetMapping("/buscar-por-data-de-nascimento/{dataInicio}/{dataFim}")
+	@GetMapping(value = "/buscar-por-id/{id}")
+	public ResponseEntity<Cadastro> buscarPorId(@PathVariable Integer id) {
+		Cadastro cadastroBusca = service.buscarPorId(id).get();
+		return ResponseEntity.ok().body(cadastroBusca);
+	}
+	
+	@GetMapping(value = "/buscar-por-data-de-nascimento/{dataInicio}/{dataFim}")
 	public ResponseEntity<List<Cadastro>> buscarCadastrosEntreDatas(
 			@PathVariable("dataInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
 			@PathVariable("dataFim") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim) {
 		return ResponseEntity.ok(service.buscarCadastrosEntreDatas(dataInicio, dataFim));
 	}
 
-	@GetMapping("/buscar-cadastros-cidade-naoexperiencia/{cidade}")
+	@GetMapping(value = "/buscar-cadastros-cidade-naoexperiencia/{cidade}")
 	public ResponseEntity<List<Cadastro>> buscarCadastrosPorCidadeEexperiencia(@PathVariable String cidade) {
 		return ResponseEntity.ok(service.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
 
-	@GetMapping("/buscar-quantidade-por-profissao")
+	@GetMapping(value = "/buscar-quantidade-por-profissao")
 	public ResponseEntity<QuantidadeProfissao> buscarNumeroCadastrosPorProfissao(String profissao) {
 		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
 	}
@@ -95,13 +101,13 @@ public class CadastroController {
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }
     
-	@PostMapping("/inserir")
+	@PostMapping(value = "/inserir")
     public ResponseEntity<Cadastro> inserirCadastro(@RequestBody Cadastro cadastro) {
     	Cadastro cadastroCriado = service.inserirCadastro(cadastro);
     	return ResponseEntity.ok().body(cadastroCriado);
     }
     
-    @PutMapping("/atualizar/{id}")
+    @PutMapping(value = "/atualizar/{id}")
     public ResponseEntity<Cadastro> atualizarCadastro(@PathVariable Integer id, @RequestBody Cadastro cadastro) {
     	Cadastro cadastroAtualizado = service.atualizarCadastro(id, cadastro);
     	return ResponseEntity.ok().body(cadastroAtualizado);

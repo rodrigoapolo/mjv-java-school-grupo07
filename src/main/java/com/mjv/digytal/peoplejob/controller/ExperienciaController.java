@@ -29,18 +29,25 @@ public class ExperienciaController {
 	private ExperienciaService experienciaService;
 
 	@GetMapping(value = "/buscar-nao-trabalhando/{empregoAtual}")
-	public ResponseEntity<List<CadastroView>> imprimirNaoTrabalhando(@PathParam("empregoAtual") boolean empregoAtual) {
+	public ResponseEntity<List<CadastroView>> imprimirNaoTrabalhando(@PathVariable boolean empregoAtual) {
 		List<CadastroView> candidatosNaoTrabalhando = experienciaService.imprimirNaoTrabalhando(empregoAtual);
 		return ResponseEntity.ok().body(candidatosNaoTrabalhando);
 	}
+	
+	@GetMapping(value = "/buscar-por-id/{id}")
+	public ResponseEntity<Experiencia> buscarPorId(@PathVariable Integer id) {
+		Experiencia experienciaBusca = experienciaService.buscarPorId(id).get();
+		return ResponseEntity.ok().body(experienciaBusca);
+	}
+	
 
-	@PostMapping("/inserir")
+	@PostMapping(value = "/inserir")
 	public ResponseEntity<Experiencia> inserirExperiencia(@RequestBody Experiencia experiencia) {
 		Experiencia experienciaCriada = experienciaService.inserirExperiencia(experiencia);
 		return ResponseEntity.ok().body(experienciaCriada);
 	}
 	
-	@PutMapping("/atualizar/{id}")
+	@PutMapping(value = "/atualizar/{id}")
 	public ResponseEntity<Experiencia> atualizarExperiencia(@PathVariable Integer id, @RequestBody Experiencia experiencia) {
 		Experiencia experienciaAtualizada = experienciaService.atualizarExperiencia(id, experiencia);
 		return ResponseEntity.ok().body(experienciaAtualizada);

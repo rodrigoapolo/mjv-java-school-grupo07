@@ -31,17 +31,17 @@ public class HabilidadeController {
 	
 	@GetMapping(value = "/buscar-por-id/{id}")
 	public ResponseEntity<Habilidade> buscarPorId(@PathVariable Integer id) {
-		Habilidade habilidade = habilidadeService.buscarPorId(id).get();
-		return ResponseEntity.ok().body(habilidade);
+		Habilidade habilidadeBusca = habilidadeService.buscarPorId(id).get();
+		return ResponseEntity.ok().body(habilidadeBusca);
 	}
 	
-	@PutMapping("/atualizar/{id}")
+	@PutMapping(value = "/atualizar/{id}")
 	public ResponseEntity<Habilidade> atualizarHabilidade(@PathVariable Integer id, @RequestBody Habilidade habilidade) {
 		Habilidade habilidadeAtualizada = habilidadeService.atualizarHabilidade(id, habilidade);
 		return ResponseEntity.ok().body(habilidadeAtualizada);
 	}
 	
-	@PostMapping("/inserir")
+	@PostMapping(value = "/inserir")
 	private ResponseEntity<Habilidade> inserirHabilidade(@RequestBody Habilidade habilidade) {
 		Habilidade habilidadeCriada = habilidadeService.inserirHabilidade(habilidade);
 		return ResponseEntity.ok().body(habilidadeCriada);

@@ -35,17 +35,17 @@ public class ProfissaoController {
 	
 	@GetMapping(value = "/buscar-por-id/{id}")
 	public ResponseEntity<Profissao> buscarPorId(@PathVariable Integer id) {
-		Profissao profissao = profissaoService.buscarPorId(id).get();
-		return ResponseEntity.ok().body(profissao);
+		Profissao profissaoBusca = profissaoService.buscarPorId(id).get();
+		return ResponseEntity.ok().body(profissaoBusca);
 	}
 	
-	@PutMapping("/atualizar/{id}")
+	@PutMapping(value = "/atualizar/{id}")
 	public ResponseEntity<Profissao> atualizarProfissao(@PathVariable Integer id, @RequestBody Profissao profissao) {
 		Profissao profissaoAtualizada = profissaoService.atualizarProfissao(id, profissao);
 		return ResponseEntity.ok().body(profissaoAtualizada);
 	}
 	
-	@PostMapping("/inserir")
+	@PostMapping(value = "/inserir")
 	public ResponseEntity<Profissao> inserirProfissao(@RequestBody Profissao profissao) {
 		Profissao profissaoRetorno = profissaoService.inserirProfissao(profissao);
 		return ResponseEntity.ok().body(profissaoRetorno);
