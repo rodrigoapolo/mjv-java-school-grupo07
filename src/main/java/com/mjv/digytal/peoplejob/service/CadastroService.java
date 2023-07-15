@@ -40,4 +40,20 @@ public class CadastroService {
 		return cadastros;
 	}
 
+	public List<Cadastro> listarCadastrosComExperiencasEntre(LocalDate dataInicial, LocalDate dataFinal) {
+		return cadastroRepository.listarCadastrosComExperiencasEntre(dataInicial, dataFinal);
+	}
+
+	public List<Cadastro> listarCadastrosTrabalharamNa(String empresa) {
+		return cadastroRepository.listarCadastrosTrabalharamNa(empresa);
+	}
+
+	public List<Cadastro> listarCadastrosQueTrabalhamNa(String empresa) {
+		return cadastroRepository.listarCadastrosQueTrabalhamNa(empresa);
+	}
+
+	public List<Cadastro> listarCadastrosEmpregadosAtualmente() {
+		return cadastroRepository.listarCadastrosEmpregadosAtualmente();
+	}
+
 }

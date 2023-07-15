@@ -38,9 +38,30 @@ public class CadastroController {
 		return ResponseEntity.ok(service.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
 
+	@GetMapping("/buscar-cadastros-com-experiencias-entre")
+	public ResponseEntity<List<Cadastro>> listarCadastrosComExperiencasEntre(LocalDate dataInicial,
+			LocalDate dataFinal) {
+		return ResponseEntity.ok(service.listarCadastrosComExperiencasEntre(dataInicial, dataFinal));
+	}
+
 	@GetMapping("/buscar-quantidade-de-cadastro-por-profissao")
 	public ResponseEntity<Integer> buscarNumeroCadastrosPorProfissao(String profissao) {
 		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
+	}
+
+	@GetMapping("/buscar-cadastros-que-trabalharam-na-empresa")
+	public ResponseEntity<List<Cadastro>> listarCadastrosTrabalharamNa(String empresa) {
+		return ResponseEntity.ok(service.listarCadastrosTrabalharamNa(empresa));
+	}
+
+	@GetMapping("/buscar-cadastros-que-ainda-trabalham-na-empresa")
+	public ResponseEntity<List<Cadastro>> listarCadastrosQueTrabalhamNa(String empresa) {
+		return ResponseEntity.ok(service.listarCadastrosQueTrabalhamNa(empresa));
+	}
+
+	@GetMapping("/buscar-cadastros-empregados-atualmente")
+	public ResponseEntity<List<Cadastro>> listarCadastrosEmpregadosAtualmente() {
+		return ResponseEntity.ok(service.listarCadastrosEmpregadosAtualmente());
 	}
 
 }

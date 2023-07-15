@@ -57,11 +57,11 @@ public class TestConfig implements CommandLineRunner {
 		cidade1.setSigla("SP");
 		endereco1.setCidade(cidade1);
 		c1.setEndereco(endereco1);
-	
+
 		Profissao profissao1 = new Profissao();
 		profissao1.setNome("Java");
 		c1.getProfissao().add(profissao1);
-		
+
 		Habilidade habilidade1 = new Habilidade();
 		habilidade1.setNome("Java");
 		c1.getHabilidades().add(habilidade1);
@@ -71,7 +71,7 @@ public class TestConfig implements CommandLineRunner {
 		experiencia1.setDataContratacao(LocalDate.of(2020, 6, 25));
 		experiencia1.setDataDesligamento(LocalDate.of(2020, 12, 30));
 		experiencia1.setRegimeContratacao(RegimeContratacao.CLT);
-//		c1.getExperiencias().add(experiencia1);
+		c1.getExperiencias().add(experiencia1);
 		Empresa empresa1 = new Empresa();
 		empresa1.setNome("MJV");
 		experiencia1.setEmpresa(empresa1);
