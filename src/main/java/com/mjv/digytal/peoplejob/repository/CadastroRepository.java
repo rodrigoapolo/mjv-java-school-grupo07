@@ -32,14 +32,7 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	
 	@Query("SELECT c FROM Cadastro c INNER JOIN c.experiencias exp INNER JOIN exp.empresa emp WHERE emp.nome = :nomeEmpresa AND exp.empregoAtual = true")
 	List<Cadastro> listarCadastrosQueTrabalhamNa(@Param("nomeEmpresa") String nomeEmpresa);
-	
-	
-	
-	// NOT WORKING //
-	
-	
-	
-	
+
 	@Query("SELECT c FROM Cadastro c INNER JOIN c.experiencias e WHERE e.empregoAtual = true")
 	List<Cadastro> listarCadastrosEmpregadosAtualmente();
 
