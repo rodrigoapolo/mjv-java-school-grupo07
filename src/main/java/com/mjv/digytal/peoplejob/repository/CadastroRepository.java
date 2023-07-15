@@ -3,18 +3,12 @@ package com.mjv.digytal.peoplejob.repository;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
-import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.model.Sexo;
 
@@ -31,13 +25,13 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	List<CadastroView> buscarCadastrosPorCidade(String cidade);
 
 	@Query("select count(c) as quantidade from Cadastro c INNER JOIN Profissao p on c.id = p.id where p.nome = :profissao")
-	QuantidadeProfissao contarCadastrosPorProfissao(String profissao);
+	QuantidadeProfissaoView contarCadastrosPorProfissao(String profissao);
 	
 	@Query("SELECT c FROM Cadastro c JOIN c.profissao p WHERE p.nome <> :nome")
-	List<CadastroViewProfissao> buscarNaoProfissao(@Param("nome") String nome);
+	List<CadastroProfissaoView> buscarNaoProfissao(@Param("nome") String nome);
 	
 	@Query("SELECT c FROM Cadastro c WHERE c.pretencaoSalarial.pretencaoMinima >= :salarioMinimoMenor AND c.pretencaoSalarial.pretencaoMinima < :salarioMinimoMaior")
-	List<CadastroViewPretensao> bucarIntervaloSalarioMinimoMaximo(@Param("salarioMinimoMenor") Double salarioMinimoMenor, @Param("salarioMinimoMaior") Double salarioMinimoMaior);
+	List<CadastroPretensaoView> bucarIntervaloSalarioMinimoMaximo(@Param("salarioMinimoMenor") Double salarioMinimoMenor, @Param("salarioMinimoMaior") Double salarioMinimoMaior);
 
 	@Query("SELECT MIN(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
 	SalarioProfissaoView buscarSalarioMinimoProfissao(@Param("profissao") String profissao);
@@ -45,13 +39,13 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	@Query("SELECT AVG(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
 	SalarioProfissaoView buscarMediaSalarioMaximoProfissao(@Param("profissao") String profissao);
 
-	@Query("SELECT COUNT(c) FROM Cadastro c JOIN c.habilidades h WHERE h.nome = :habilidade")
-    int contarCandidatosJava(@Param("habilidade") String habilidade);
+	@Query("SELECT COUNT(c) as quantidade FROM Cadastro c JOIN c.habilidades h WHERE h.nome = :habilidade")
+	QuantidadeHabilidadeView contarCandidatosHabilidade(@Param("habilidade") String habilidade);
 
 	@Query("SELECT c FROM Cadastro c JOIN c.habilidades h WHERE h.nome = :habilidade")
-	List<CadastroViewHabilidade> buscarCandidatoPorHabilidade(@Param("habilidade") String habilidade);
+	List<CadastroHabilidadeView> buscarCandidatoPorHabilidade(@Param("habilidade") String habilidade);
 
 	@Query("SELECT c FROM Cadastro c JOIN c.endereco.cidade cidade WHERE c.sexo = :sexo AND cidade.sigla = :sigla")
-	List<CadastroViewSexoEndereco> buscarCandidatoPorSexoESigla(@Param("sexo") Sexo sexo, @Param("sigla") String sigla);
+	List<CadastroSexoEnderecoView> buscarCandidatoPorSexoESigla(@Param("sexo") Sexo sexo, @Param("sigla") String sigla);
 
 }

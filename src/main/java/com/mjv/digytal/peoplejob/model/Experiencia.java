@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Experiencia {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private Double salario;
     private boolean empregoAtual;

@@ -17,7 +17,7 @@ public class Profissao {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private String nome;
     

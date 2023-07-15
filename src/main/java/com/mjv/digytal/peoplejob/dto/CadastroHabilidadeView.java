@@ -1,10 +1,10 @@
-package com.mjv.digytal.peoplejob.dto.view;
+package com.mjv.digytal.peoplejob.dto;
 
 import java.time.LocalDate;
 
 import com.mjv.digytal.peoplejob.model.Habilidade;
 
-public interface CadastroViewHabilidade {
+public interface CadastroHabilidadeView {
 
 	String getNome();
 	String getCpf();

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
+import com.mjv.digytal.peoplejob.dto.CadastroView;
 import com.mjv.digytal.peoplejob.model.Experiencia;
 import com.mjv.digytal.peoplejob.repository.ExperienciaRepository;
 
