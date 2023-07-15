@@ -4,18 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import com.mjv.digytal.peoplejob.dto.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.dto.CadastroView;
-import com.mjv.digytal.peoplejob.dto.CadastroHabilidadeView;
-import com.mjv.digytal.peoplejob.dto.CadastroPretensaoView;
-import com.mjv.digytal.peoplejob.dto.CadastroProfissaoView;
-import com.mjv.digytal.peoplejob.dto.CadastroSexoEnderecoView;
-import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoView;
-import com.mjv.digytal.peoplejob.dto.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.model.Sexo;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
@@ -38,8 +32,8 @@ public class CadastroService {
 		return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
 	}
 	
-	public int contarCandidatosPorHabilidades(String habilidade) {
-		return cadastroRepository.contarCandidatosJava(habilidade);
+	public QuantidadeHabilidadeView contarCandidatosPorHabilidades(String habilidade) {
+		return cadastroRepository.contarCandidatosHabilidade(habilidade);
 	}
 
 	public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao) {

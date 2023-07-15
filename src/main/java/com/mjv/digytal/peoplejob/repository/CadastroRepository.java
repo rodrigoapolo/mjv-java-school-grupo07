@@ -3,18 +3,12 @@ package com.mjv.digytal.peoplejob.repository;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.mjv.digytal.peoplejob.dto.CadastroView;
-import com.mjv.digytal.peoplejob.dto.CadastroHabilidadeView;
-import com.mjv.digytal.peoplejob.dto.CadastroPretensaoView;
-import com.mjv.digytal.peoplejob.dto.CadastroProfissaoView;
-import com.mjv.digytal.peoplejob.dto.CadastroSexoEnderecoView;
-import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoView;
-import com.mjv.digytal.peoplejob.dto.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.model.Sexo;
 
@@ -45,8 +39,8 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 	@Query("SELECT AVG(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
 	SalarioProfissaoView buscarMediaSalarioMaximoProfissao(@Param("profissao") String profissao);
 
-	@Query("SELECT COUNT(c) FROM Cadastro c JOIN c.habilidades h WHERE h.nome = :habilidade")
-    int contarCandidatosJava(@Param("habilidade") String habilidade);
+	@Query("SELECT COUNT(c) as quantidade FROM Cadastro c JOIN c.habilidades h WHERE h.nome = :habilidade")
+	QuantidadeHabilidadeView contarCandidatosHabilidade(@Param("habilidade") String habilidade);
 
 	@Query("SELECT c FROM Cadastro c JOIN c.habilidades h WHERE h.nome = :habilidade")
 	List<CadastroHabilidadeView> buscarCandidatoPorHabilidade(@Param("habilidade") String habilidade);

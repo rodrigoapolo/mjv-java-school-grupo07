@@ -4,6 +4,7 @@ package com.mjv.digytal.peoplejob.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.CadastroView;
-import com.mjv.digytal.peoplejob.dto.CadastroHabilidadeView;
-import com.mjv.digytal.peoplejob.dto.CadastroPretensaoView;
-import com.mjv.digytal.peoplejob.dto.CadastroProfissaoView;
-import com.mjv.digytal.peoplejob.dto.CadastroSexoEnderecoView;
-import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoView;
-import com.mjv.digytal.peoplejob.dto.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
 
@@ -86,8 +80,8 @@ public class CadastroController {
     }
     
 	@GetMapping(value = "/contar-por-habilidade/{habilidade}")
-	private ResponseEntity<Integer> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
-		int quantidade = service.contarCandidatosPorHabilidades(habilidade);
+	private ResponseEntity<QuantidadeHabilidadeView> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
+		QuantidadeHabilidadeView quantidade = service.contarCandidatosPorHabilidades(habilidade);
 		return ResponseEntity.ok().body(quantidade);
 	}
 
