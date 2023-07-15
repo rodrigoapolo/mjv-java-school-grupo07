@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
+import com.mjv.digytal.peoplejob.dto.CadastroView;
 import com.mjv.digytal.peoplejob.model.Experiencia;
 import com.mjv.digytal.peoplejob.service.ExperienciaService;
 

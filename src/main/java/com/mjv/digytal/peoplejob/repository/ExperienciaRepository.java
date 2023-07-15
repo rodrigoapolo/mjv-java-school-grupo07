@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
+import com.mjv.digytal.peoplejob.dto.CadastroView;
 import com.mjv.digytal.peoplejob.model.Experiencia;
 
 @Repository

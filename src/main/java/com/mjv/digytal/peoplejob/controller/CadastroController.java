@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
-import com.mjv.digytal.peoplejob.dto.view.CadastroHabilidadeView;
-import com.mjv.digytal.peoplejob.dto.view.CadastroPretensaoView;
-import com.mjv.digytal.peoplejob.dto.view.CadastroProfissaoView;
-import com.mjv.digytal.peoplejob.dto.view.CadastroSexoEnderecoView;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoView;
-import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
+import com.mjv.digytal.peoplejob.dto.CadastroView;
+import com.mjv.digytal.peoplejob.dto.CadastroHabilidadeView;
+import com.mjv.digytal.peoplejob.dto.CadastroPretensaoView;
+import com.mjv.digytal.peoplejob.dto.CadastroProfissaoView;
+import com.mjv.digytal.peoplejob.dto.CadastroSexoEnderecoView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoView;
+import com.mjv.digytal.peoplejob.dto.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
 

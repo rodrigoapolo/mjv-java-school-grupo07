@@ -1,4 +1,4 @@
-package com.mjv.digytal.peoplejob.dto.view;
+package com.mjv.digytal.peoplejob.dto;
 
 import com.mjv.digytal.peoplejob.model.Sexo;
 
