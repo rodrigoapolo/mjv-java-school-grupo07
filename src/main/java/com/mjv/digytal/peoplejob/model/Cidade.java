@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private String nome;
     private String estado;
