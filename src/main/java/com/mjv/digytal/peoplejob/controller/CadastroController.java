@@ -4,6 +4,7 @@ package com.mjv.digytal.peoplejob.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.mjv.digytal.peoplejob.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.view.CadastroView;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
-import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.service.CadastroService;
 
@@ -60,7 +54,7 @@ public class CadastroController {
 	}
 
 	@GetMapping(value = "/buscar-quantidade-por-profissao")
-	public ResponseEntity<QuantidadeProfissao> buscarNumeroCadastrosPorProfissao(String profissao) {
+	public ResponseEntity<QuantidadeProfissaoView> buscarNumeroCadastrosPorProfissao(String profissao) {
 		return ResponseEntity.ok(service.buscarNumeroCadastrosPorProfissao(profissao));
 	}
 
@@ -77,38 +71,38 @@ public class CadastroController {
     }
     
     @GetMapping(value = "/buscar-intervalos-salariominimo/{salariominimomenor}/{salariominimomaior}")
-    public ResponseEntity<List<CadastroViewPretensao>> buscarIntervaloSalarioMinimo(
+    public ResponseEntity<List<CadastroPretensaoView>> buscarIntervaloSalarioMinimo(
     		@PathVariable("salariominimomenor") Double salarioMinimoMenor,
     		@PathVariable("salariominimomaior") Double salarioMinimoMaior) {
-    	List<CadastroViewPretensao> candidatosPorIntervaloSalMin = service
+    	List<CadastroPretensaoView> candidatosPorIntervaloSalMin = service
 				.buscarIntervaloSalarioMinimo(salarioMinimoMenor, salarioMinimoMaior);
 		return ResponseEntity.ok().body(candidatosPorIntervaloSalMin);
     }
     
 	@GetMapping(value = "/contar-por-habilidade/{habilidade}")
-	private ResponseEntity<Integer> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
-		int quantidade = service.contarCandidatosPorHabilidades(habilidade);
+	private ResponseEntity<QuantidadeHabilidadeView> contarCandandidatosPorHabilidade(@PathVariable String habilidade) {
+		QuantidadeHabilidadeView quantidade = service.contarCandidatosPorHabilidades(habilidade);
 		return ResponseEntity.ok().body(quantidade);
 	}
 
 	@GetMapping(value = "/buscar-exceto-profissao")
-	public ResponseEntity<List<CadastroViewProfissao>> imprimirCandidatosExcetoProfissao(String nome) {
-		List<CadastroViewProfissao> candidatosNaoAnalistas = service.buscarCandidatosExcetoProfissao(nome);
+	public ResponseEntity<List<CadastroProfissaoView>> imprimirCandidatosExcetoProfissao(String nome) {
+		List<CadastroProfissaoView> candidatosNaoAnalistas = service.buscarCandidatosExcetoProfissao(nome);
 		return ResponseEntity.ok().body(candidatosNaoAnalistas);
 	}
 
     @GetMapping(value = "/buscar-por-habilidade/{habilidade}")
-    public ResponseEntity<List<CadastroViewHabilidade>> buscarCandidatoPorHabilidade(
+    public ResponseEntity<List<CadastroHabilidadeView>> buscarCandidatoPorHabilidade(
     		@PathVariable("habilidade") String habilidade) {
-    	List<CadastroViewHabilidade> cadastrosRelacionados = service
+    	List<CadastroHabilidadeView> cadastrosRelacionados = service
     			.buscarCandidatoPorHabilidade(habilidade);
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }
 
     @GetMapping(value = "/buscar-por-sexo-e-sigla/{sexo}/{sigla}")
-    public ResponseEntity<List<CadastroViewSexoEndereco>> buscarCandidatoPorSexoESigla(
+    public ResponseEntity<List<CadastroSexoEnderecoView>> buscarCandidatoPorSexoESigla(
     		@PathVariable("sexo") String sexo, @PathVariable("sigla") String sigla) {
-    	List<CadastroViewSexoEndereco> cadastrosRelacionados = service
+    	List<CadastroSexoEnderecoView> cadastrosRelacionados = service
     			.buscarCandidatoPorSexoESigla(sexo, sigla);
     	return ResponseEntity.ok().body(cadastrosRelacionados);
     }

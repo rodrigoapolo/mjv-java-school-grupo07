@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.dto.view.CandidatoProfissaoView;
-import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissionalView;
+import com.mjv.digytal.peoplejob.dto.CandidatoProfissaoView;
+import com.mjv.digytal.peoplejob.dto.ProfissaoCandidatoView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoPorCidadeView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissionalView;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.repository.ProfissaoRepository;
 
