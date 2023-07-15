@@ -31,7 +31,7 @@ import lombok.Setter;
 public class Cadastro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private String nome;    
     private String cpf;
@@ -45,21 +45,21 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name="profissao_cadastro",
             joinColumns={@JoinColumn(name="cadastro_ID")},
             inverseJoinColumns={@JoinColumn(name="profissao_ID")})
     private Set<Profissao> profissao = new LinkedHashSet<>();
 
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name="habilidade_cadastro",
             joinColumns={@JoinColumn(name="cadastro_ID")},
             inverseJoinColumns={@JoinColumn(name="habilidade_ID")})
     private Set<Habilidade> habilidades = new LinkedHashSet<>();
 
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cadastro_id",referencedColumnName = "id")
     private List<Experiencia> experiencias = new LinkedList<>();

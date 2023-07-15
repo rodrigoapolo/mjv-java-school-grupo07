@@ -1,6 +1,6 @@
-package com.mjv.digytal.peoplejob.dto.view;
+package com.mjv.digytal.peoplejob.dto;
 
-public interface EnderecoViewCidade {
+public interface EnderecoCidadeView {
 
     String getCep();
     String getLogradouro();

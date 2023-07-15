@@ -1,9 +1,9 @@
 package com.mjv.digytal.peoplejob.repository;
 
-import com.mjv.digytal.peoplejob.dto.view.CandidatoProfissaoView;
-import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissionalView;
+import com.mjv.digytal.peoplejob.dto.CandidatoProfissaoView;
+import com.mjv.digytal.peoplejob.dto.ProfissaoCandidatoView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoPorCidadeView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissionalView;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;

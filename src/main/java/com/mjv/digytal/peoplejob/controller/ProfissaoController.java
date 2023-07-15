@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mjv.digytal.peoplejob.dto.view.CandidatoProfissaoView;
-import com.mjv.digytal.peoplejob.dto.view.ProfissaoCandidatoView;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoPorCidadeView;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissionalView;
+import com.mjv.digytal.peoplejob.dto.CandidatoProfissaoView;
+import com.mjv.digytal.peoplejob.dto.ProfissaoCandidatoView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoPorCidadeView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissionalView;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.service.ProfissaoService;
 

@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Habilidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private String nome;
 }
