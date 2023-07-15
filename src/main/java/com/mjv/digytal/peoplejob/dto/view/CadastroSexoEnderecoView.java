@@ -2,12 +2,12 @@ package com.mjv.digytal.peoplejob.dto.view;
 
 import com.mjv.digytal.peoplejob.model.Sexo;
 
-public interface CadastroViewSexoEndereco {
+public interface CadastroSexoEnderecoView {
 
 
 	String getNome();
 	String getCpf();
 	Sexo getSexo();
-	EnderecoViewCidade getEndereco();
+	EnderecoCidadeView getEndereco();
 	
 }

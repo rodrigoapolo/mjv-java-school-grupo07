@@ -1,5 +1,5 @@
 package com.mjv.digytal.peoplejob.dto.view;
 
-public interface QuantidadeProfissao {
+public interface QuantidadeProfissaoView {
     Integer getQuantidade();
 }

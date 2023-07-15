@@ -2,14 +2,15 @@ package com.mjv.digytal.peoplejob.dto.view;
 
 import java.time.LocalDate;
 
-import com.mjv.digytal.peoplejob.model.PretencaoSalarial;
+import com.mjv.digytal.peoplejob.model.Habilidade;
 
-public interface CadastroViewPretensao {
+public interface CadastroHabilidadeView {
 
 	String getNome();
 	String getCpf();
 	LocalDate getDataNascimento();
 	String getEmail();
 	String getTelefone();
-	PretencaoSalarial getPretencaoSalarial();
+	Habilidade getHabilidades();
+	
 }

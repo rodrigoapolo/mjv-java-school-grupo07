@@ -10,11 +10,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.mjv.digytal.peoplejob.dto.view.CadastroView;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewHabilidade;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewPretensao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewProfissao;
-import com.mjv.digytal.peoplejob.dto.view.CadastroViewSexoEndereco;
-import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissao;
+import com.mjv.digytal.peoplejob.dto.view.CadastroHabilidadeView;
+import com.mjv.digytal.peoplejob.dto.view.CadastroPretensaoView;
+import com.mjv.digytal.peoplejob.dto.view.CadastroProfissaoView;
+import com.mjv.digytal.peoplejob.dto.view.CadastroSexoEnderecoView;
+import com.mjv.digytal.peoplejob.dto.view.QuantidadeProfissaoView;
 import com.mjv.digytal.peoplejob.dto.view.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
 import com.mjv.digytal.peoplejob.model.Sexo;
@@ -46,8 +46,8 @@ public class CadastroService {
 		return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
 	}
 
-	public List<CadastroViewPretensao> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor,
-			Double salarioMinimoMaior) {
+	public List<CadastroPretensaoView> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor,
+                                                                    Double salarioMinimoMaior) {
 		return cadastroRepository.bucarIntervaloSalarioMinimoMaximo(salarioMinimoMenor, salarioMinimoMaior);
 	}
 
@@ -59,20 +59,20 @@ public class CadastroService {
 		return cadastroRepository.buscarCadastrosPorCidade(cidade);
 	}
 
-	public QuantidadeProfissao buscarNumeroCadastrosPorProfissao(String profissao) {
+	public QuantidadeProfissaoView buscarNumeroCadastrosPorProfissao(String profissao) {
 		return cadastroRepository.contarCadastrosPorProfissao(profissao);
 	}
 
-	public List<CadastroViewHabilidade> buscarCandidatoPorHabilidade(String habilidade) {
+	public List<CadastroHabilidadeView> buscarCandidatoPorHabilidade(String habilidade) {
 		return cadastroRepository.buscarCandidatoPorHabilidade(habilidade);
 	}
 
-	public List<CadastroViewSexoEndereco> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
+	public List<CadastroSexoEnderecoView> buscarCandidatoPorSexoESigla(String sexo, String sigla) {
 		return cadastroRepository.buscarCandidatoPorSexoESigla(Sexo.valueOf(sexo), sigla);
 	}
 
-	public List<CadastroViewProfissao> buscarCandidatosExcetoProfissao(String nome) {
-		List<CadastroViewProfissao> candidatosNaoTrabalhando = cadastroRepository.buscarNaoProfissao(nome);
+	public List<CadastroProfissaoView> buscarCandidatosExcetoProfissao(String nome) {
+		List<CadastroProfissaoView> candidatosNaoTrabalhando = cadastroRepository.buscarNaoProfissao(nome);
 		return candidatosNaoTrabalhando;
 	}
 
