@@ -19,8 +19,6 @@ import java.util.List;
 @Repository
 public interface ProfissaoRepository extends JpaRepository<Profissao, Integer> {
 
-	Profissao findByNome(String nome);
-
 	@Query("SELECT MIN(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
 	SalarioProfissaoView buscarSalarioMinimo(@Param("profissao") String profissao);
 
