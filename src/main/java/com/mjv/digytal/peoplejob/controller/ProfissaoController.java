@@ -19,16 +19,31 @@ import com.mjv.digytal.peoplejob.dto.CandidatoProfissaoView;
 import com.mjv.digytal.peoplejob.dto.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoPorCidadeView;
 import com.mjv.digytal.peoplejob.dto.QuantidadeProfissionalView;
+import com.mjv.digytal.peoplejob.dto.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.service.ProfissaoService;
 
 
 @RestController
-@RequestMapping(value = "/profissao")
+@RequestMapping(value = "/api/v1/profissao")
 public class ProfissaoController {
 
 	@Autowired
 	private ProfissaoService profissaoService;
+	
+
+    @GetMapping(value = "/buscar-salarioMinimo-profissao/{profissao}")
+    public ResponseEntity<SalarioProfissaoView> buscarSalarioMinimo(@PathVariable String profissao) {
+        SalarioProfissaoView salarioMimino = profissaoService.buscarSalarioMinimo(profissao);
+        return ResponseEntity.ok().body(salarioMimino);
+    }
+
+    @GetMapping(value = "/buscar-media-salarioMaximo-profissao/{profissao}")
+    public ResponseEntity<SalarioProfissaoView> buscarMediaSalarioMinimo(@PathVariable String profissao) {
+        SalarioProfissaoView mediaSalarioMaximo = profissaoService.buscarMediaSalarioMaximo(profissao);
+        return ResponseEntity.ok().body(mediaSalarioMaximo);
+    }
+    
 	
 	@GetMapping(value = "/buscar-por-id/{id}")
 	public ResponseEntity<Profissao> buscarPorId(@PathVariable Integer id) {

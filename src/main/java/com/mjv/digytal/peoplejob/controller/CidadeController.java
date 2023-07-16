@@ -17,7 +17,7 @@ import com.mjv.digytal.peoplejob.model.Cidade;
 import com.mjv.digytal.peoplejob.service.CidadeService;
 
 @RestController
-@RequestMapping(value = "/cidade")
+@RequestMapping(value = "/api/v1/cidade")
 public class CidadeController {
 
 	@Autowired
