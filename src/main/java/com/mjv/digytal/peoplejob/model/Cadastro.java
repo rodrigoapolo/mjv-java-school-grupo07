@@ -1,142 +1,69 @@
 package com.mjv.digytal.peoplejob.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
-public class Cadastro { 
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+
+@Entity
+@Data
+@Table(name = "tb_cadastro")
+public class Cadastro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    private Integer id;
     private String nome;    
     private String cpf;
     private LocalDate dataNascimento;    
     private String email;
-    private long telefone;
-    private ArrayList<String> habilidades = new ArrayList<String>();
-    
-    private ArrayList<Profissao> profissao = new ArrayList<Profissao>();
+    private String telefone;
     private PretencaoSalarial pretencaoSalarial;
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
-    private Celular celularPessoal;
-    private Celular celularProfissional;
-    private Endereco endereco; 
-    private CadastroExperiencia cadastroExperiencia;
+    private Celular celular;
+    @Embedded
+    private Endereco endereco;
 
-    public Cadastro(String nome, String cpf, LocalDate dataNascimento, String email, long telefone, ArrayList<String> habilidades, ArrayList<Profissao> profissao, PretencaoSalarial pretencaoSalarial, Sexo sexo, Celular celularPessoal, Celular celularProfissional, Endereco endereco, CadastroExperiencia cadastroExperiencia) {  
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.email = email;
-        this.telefone = telefone;
-        this.habilidades.addAll(habilidades);
-        this.profissao.addAll(profissao);
-        this.pretencaoSalarial = pretencaoSalarial;
-        this.sexo = sexo;
-        this.celularPessoal = celularPessoal;
-        this.celularProfissional = celularProfissional;
-        this.endereco = endereco;
-        this.cadastroExperiencia = cadastroExperiencia;
-    }
+    @Setter(AccessLevel.NONE)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinTable(name="profissao_cadastro",
+            joinColumns={@JoinColumn(name="cadastro_ID")},
+            inverseJoinColumns={@JoinColumn(name="profissao_ID")})
+    private Set<Profissao> profissao = new LinkedHashSet<>();
 
-    public String getNome() {
-        return nome;
-    }
+    @Setter(AccessLevel.NONE)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinTable(name="habilidade_cadastro",
+            joinColumns={@JoinColumn(name="cadastro_ID")},
+            inverseJoinColumns={@JoinColumn(name="habilidade_ID")})
+    private Set<Habilidade> habilidades = new LinkedHashSet<>();
 
-    public void setNome(String nome){
-        this.nome = nome;
-    }
+    @Setter(AccessLevel.NONE)
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cadastro_id",referencedColumnName = "id")
+    private List<Experiencia> experiencias = new LinkedList<>();
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf){
-        this.cpf = cpf;
-    }
-
-    public LocalDate getDataNascimento(){
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento){
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
-
-    public long getTelefone(){
-        return telefone;
-    }
-
-    public void setTelefone(long telefone){
-        this.telefone = telefone;
-    }
-
-    public ArrayList<String> getHabilidades(){
-        return habilidades;
-    }
-
-    public void setHabilidades(ArrayList<String> habilidades){
-        this.habilidades = habilidades;
-    }
-
-    public ArrayList<Profissao> getProfissao(){
-        return profissao;
-    }
-
-    public void setProfissao(ArrayList<Profissao> profissao) {
-        this.profissao = profissao;
-    }
-
-    public PretencaoSalarial getPretencaoSalarial(){
-        return pretencaoSalarial;
-    }
-
-    public void setPretencaoSalarial(PretencaoSalarial pretencaoSalarial){
-        this.pretencaoSalarial = pretencaoSalarial;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo){
-        this.sexo = sexo;
-    }
-
-    public Celular getCelularPessoal(){
-        return celularPessoal;
-    }
-
-    public void setCelularPessoal(Celular celular){
-        this.celularPessoal = celular;
-    }
-
-    public Celular getCelularProfissional(){
-        return celularProfissional;
-    }
-
-    public void setCelularProfissional(Celular celular){
-        this.celularProfissional = celular;
-    }
-    
-    public Endereco getEndereco(){
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco){
-        this.endereco = endereco;
-    }
-
-    public CadastroExperiencia getCadastroExperiencia(){
-        return cadastroExperiencia;
-    }
-    public void setCadastroExperiencia(CadastroExperiencia cadastroExperiencia){
-        this.cadastroExperiencia = cadastroExperiencia;
-    }
 }
 
 

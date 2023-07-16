@@ -1,27 +1,18 @@
  package com.mjv.digytal.peoplejob.model;
 
-public class Empresa {
-    private int id;
+ import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+ @Entity
+ @Data
+ @Table(name = "tb_empresa")
+ public class Empresa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    private Integer id;
     private String nome;
-
-    public Empresa(int id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId( int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome){
-        this.nome = nome;
-    }
 }
