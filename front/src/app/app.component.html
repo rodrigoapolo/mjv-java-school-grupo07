@@ -12,7 +12,7 @@
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome"/>
       </p>
-          <p>
+      <p>
         <label for="CPF">CPF:</label>
         <input type="text" name="CPF" id="CPF"/>
       </p>
@@ -23,16 +23,13 @@
       <p>
         <label for="sexo">Sexo:</label>
         <span>
-          <input type="radio" name="sexo" value="feminino"> Feminino
+          <input type="radio" name="sexo" value="FEMININO"> Feminino
         </span>
         <span>
-          <input type="radio" name="sexo" value="masculino"> Masculino
+          <input type="radio" name="sexo" value="MASCULINO"> Masculino
         </span>
         <span>
-          <input type="radio" name="sexo" value="naoBinario"> Não Binário
-        </span>
-        <span>
-          <input type="radio" name="sexo" value="prefiroNaoDeclarar"> Prefiro Não Declarar
+          <input type="radio" name="sexo" value="PREFIRO_NAO_DECLARAR"> Prefiro não declarar
         </span>
       </p>
       <p>
@@ -51,10 +48,17 @@
         <label for="celularProfissional">Celular Profissional:</label>
         <input type="text" name="celularProfissional" id="celularProfissional"/>
       </p>
-      <p>
-        <label for="profissao">Profissão:</label>
-        <textarea cols="30" rows="5" name="profissao" id="profissao"></textarea>
-      </p>
+      <div class="multiline">
+        <p>
+          <label for="profissao">Profissão:</label>
+          <input type="text" name="profissao" id="profissao" [(ngModel)]="profissaoValue"/>
+          <button (click)="profissoesClick()" type="button" class="cadastroButton" name="cadastrarProfissao" id="cadastrarProfissao">Cadastrar Profissão</button>
+        </p>
+        <div class="cadastrosDiv">
+          <label>Profissões Cadastradas:</label>
+          <div class="itensCadastrados" name="profissoesCadastradas" id="profissoesCadastradas">{{profissoesText}}</div>
+        </div>
+      </div>       
       <p>
         <label for="pretençãoMinima">Pretenção Mínima:</label>
         <input type="text" name="pretençãoMinima" id="pretençãoMinima"/>
@@ -63,11 +67,22 @@
         <label for="pretençãoMaxima">Pretenção Máxima:</label>
         <input type="text" name="pretençãoMáxima" id="pretençãoMáxima"/>
       </p>
+      <div class="multiline">
+        <p>
+          <label for="habilidades">Habilidades:</label>
+          <input type="text" name="habilidades" id="habilidades" [(ngModel)]="habilidadeValue">
+          <button (click)="habilidadesClick()" type="button" class="cadastroButton" name="cadastrarHabilidades" id="cadastrarHabilidades">Cadastrar Habilidade</button>
+        </p>
+        <div class="cadastrosDiv">
+          <label>Habilidades Cadastradas:</label>
+          <div class="itensCadastrados" name="habilidadesCadastradas" id="habilidadesCadastradas">{{habilidadesText}}</div>
+        </div>
+      </div>
       <p>
         <label for="habilidades">Habilidades:</label>
         <textarea cols="30" rows="5" name="habilidades" id="habilidades"></textarea>
-      </p>    
-    </fieldset>
+      </p> 
+    </fieldset> 
       
     <fieldset class="secao">
       <h2>Endereço</h2>
@@ -110,37 +125,41 @@
       <h2>Experiências</h2> 
       <p class="row">
         <label for="empregoAtual">Emprego Atual:</label>
-        <input type="checkbox" name="empregoAtual" id="empregoAtual" value=""> 
+        <input type="checkbox" name="empregoAtual" id="empregoAtual" value="" [(ngModel)]="empregoAtualValue"> 
       </p> 
       <p>
         <label for="profissao">Profissão:</label>
-        <input type="text" name="profissao" id="profissao"/>
+        <input type="text" name="profissao" id="profissao" [(ngModel)]="profissaoExpValue"/>
       </p>  
       <p>
         <label for="salario">Salário:</label>
-        <input type="text" name="salario" id="salario"/>
+        <input type="text" name="salario" id="salario" [(ngModel)]="salarioValue"/>
       </p>  
       <p>
         <label for="dataContratacao">Data Contratação:</label>
-        <input type="text" name="dataContratacao" id="dataContratacao"/>
+        <input type="text" name="dataContratacao" id="dataContratacao" [(ngModel)]="dataContratacaoValue"/>
       </p> 
       <p>
         <label for="dataDesligamento">Data Desligamento:</label>
-        <input type="text" name="dataDesligamento" id="dataDesligamento"/>
+        <input type="text" name="dataDesligamento" id="dataDesligamento" [(ngModel)]="dataDesligamentoValue"/>
       </p> 
       <p>
         <label for="empresa">Empresa:</label>
-        <input type="text" name="empresa" id="empresa"/>
+        <input type="text" name="empresa" id="empresa" [(ngModel)]="empresaValue"/>
       </p>  
       <p>
         <label for="regimeContracao">Regime Contração:</label>
-        <span><input type="radio" name="regimeContracao" value="clt"> CLT</span>
-        <span><input type="radio" name="regimeContracao" value="pj"> PJ</span>
-        <span><input type="radio" name="regimeContracao" value="cop"> COP</span>
-        <span><input type="radio" name="regimeContracao" value="aut"> AUT</span>
+        <span><input type="radio" name="regimeContracao" value="CLT" [(ngModel)]="regimeContratacaoValue" (change)="onRegimeContratacaoChange($event)"> CLT</span>
+        <span><input type="radio" name="regimeContracao" value="PJ" [(ngModel)]="regimeContratacaoValue"  (change)="onRegimeContratacaoChange($event)"> PJ</span>
+        <span><input type="radio" name="regimeContracao" value="COP" [(ngModel)]="regimeContratacaoValue"  (change)="onRegimeContratacaoChange($event)"> COP</span>
+        <span><input type="radio" name="regimeContracao" value="AUT" [(ngModel)]="regimeContratacaoValue"  (change)="onRegimeContratacaoChange($event)"> AUT</span>
       </p>
 
+      <button (click)="profissaoClick()" type="button" class="cadastroButton" name="cadastrarProfissao" id="cadastrarProfissao">Cadastrar Profissão</button>
     </fieldset>
+
+    <fieldset id="profissoesCadastradasDiv" class="profissoesCadastradasDiv secao" style="padding-top: 20px" #profissoesCadastradasDiv></fieldset>
+    <button type="button" class="cadastroButton cadastrar" name="cadastrar" id="cadastrar">Cadastrar</button>
   </form>
 </body>
 </html>
