@@ -20,6 +20,12 @@ public class CadastroService {
 	@Autowired
 	private CadastroRepository cadastroRepository;
 
+	public List<CadastroView> imprimirNaoTrabalhando(boolean empregoAtual) {
+		 List<CadastroView> candidatosNaoTrabalhando =
+				 cadastroRepository.buscarCandidatosNaotrabalha(empregoAtual);
+		 return candidatosNaoTrabalhando;
+	}
+	
 	public Optional<Cadastro> buscarPorId(Integer id) {
 		return cadastroRepository.findById(id);
 	}
@@ -28,16 +34,8 @@ public class CadastroService {
 		return cadastroRepository.getByCpf(cpf);
 	}
 
-	public SalarioProfissaoView buscarSalarioMinimoProfissao(String profissao) {
-		return cadastroRepository.buscarSalarioMinimoProfissao(profissao);
-	}
-	
 	public QuantidadeHabilidadeView contarCandidatosPorHabilidades(String habilidade) {
 		return cadastroRepository.contarCandidatosHabilidade(habilidade);
-	}
-
-	public SalarioProfissaoView buscarMediaSalarioMaximoProfissao(String profissao) {
-		return cadastroRepository.buscarMediaSalarioMaximoProfissao(profissao);
 	}
 
 	public List<CadastroPretensaoView> buscarIntervaloSalarioMinimo(Double salarioMinimoMenor,

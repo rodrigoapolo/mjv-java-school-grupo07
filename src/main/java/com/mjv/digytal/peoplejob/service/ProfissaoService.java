@@ -12,6 +12,7 @@ import com.mjv.digytal.peoplejob.dto.CandidatoProfissaoView;
 import com.mjv.digytal.peoplejob.dto.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoPorCidadeView;
 import com.mjv.digytal.peoplejob.dto.QuantidadeProfissionalView;
+import com.mjv.digytal.peoplejob.dto.SalarioProfissaoView;
 import com.mjv.digytal.peoplejob.model.Profissao;
 import com.mjv.digytal.peoplejob.repository.ProfissaoRepository;
 
@@ -20,7 +21,15 @@ public class ProfissaoService {
 
 	@Autowired
 	private ProfissaoRepository profissaoRepository;
+	
+	public SalarioProfissaoView buscarSalarioMinimo(String profissao) {
+		return profissaoRepository.buscarSalarioMinimo(profissao);
+	}
 
+	public SalarioProfissaoView buscarMediaSalarioMaximo(String profissao) {
+		return profissaoRepository.buscarMediaSalarioMaximo(profissao);
+	}
+	
 	public Profissao inserirProfissao(Profissao profissao) {
 		return profissaoRepository.save(profissao);
 	}

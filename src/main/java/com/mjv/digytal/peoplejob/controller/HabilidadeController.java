@@ -17,7 +17,7 @@ import com.mjv.digytal.peoplejob.model.Habilidade;
 import com.mjv.digytal.peoplejob.service.HabilidadeService;
 
 @RestController
-@RequestMapping(value = "/habilidade")
+@RequestMapping(value = "/api/v1/habilidade")
 public class HabilidadeController {
 
 	@Autowired

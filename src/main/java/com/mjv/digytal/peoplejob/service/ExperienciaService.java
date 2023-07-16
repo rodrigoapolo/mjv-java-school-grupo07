@@ -1,6 +1,5 @@
 package com.mjv.digytal.peoplejob.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mjv.digytal.peoplejob.dto.CadastroView;
 import com.mjv.digytal.peoplejob.model.Experiencia;
 import com.mjv.digytal.peoplejob.repository.ExperienciaRepository;
 
@@ -17,12 +15,6 @@ public class ExperienciaService {
 	
 	@Autowired
 	private ExperienciaRepository experienciaRepository;
-	
-	public List<CadastroView> imprimirNaoTrabalhando(boolean empregoAtual) {
-		 List<CadastroView> candidatosNaoTrabalhando =
-				 experienciaRepository.buscarCandidatosNaotrabalha(empregoAtual);
-		 return candidatosNaoTrabalhando;
-	}
 	
 	public Optional<Experiencia> buscarPorId(Integer id) {
 		return experienciaRepository.findById(id);

@@ -17,7 +17,7 @@ import com.mjv.digytal.peoplejob.model.Empresa;
 import com.mjv.digytal.peoplejob.service.EmpresaService;
 
 @RestController
-@RequestMapping(value = "/empresa")
+@RequestMapping(value = "/api/v1/empresa")
 public class EmpresaController {
 
 	@Autowired

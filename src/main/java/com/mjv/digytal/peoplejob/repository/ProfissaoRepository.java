@@ -4,6 +4,8 @@ import com.mjv.digytal.peoplejob.dto.CandidatoProfissaoView;
 import com.mjv.digytal.peoplejob.dto.ProfissaoCandidatoView;
 import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoPorCidadeView;
 import com.mjv.digytal.peoplejob.dto.QuantidadeProfissionalView;
+import com.mjv.digytal.peoplejob.dto.SalarioProfissaoView;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +21,12 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Integer> {
 
 	Profissao findByNome(String nome);
 
+	@Query("SELECT MIN(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
+	SalarioProfissaoView buscarSalarioMinimo(@Param("profissao") String profissao);
+
+	@Query("SELECT AVG(c.pretencaoSalarial.pretencaoMinima) as salario, p.nome as profissao FROM Cadastro c INNER JOIN c.profissao p WHERE  p.nome = :profissao")
+	SalarioProfissaoView buscarMediaSalarioMaximo(@Param("profissao") String profissao);
+	
 	@Query(value = "SELECT p.NOME AS profissao, COUNT(*) AS quantidade\n" +
 			"FROM TB_PROFISSAO p\n" +
 			"INNER JOIN PROFISSAO_CADASTRO pc ON p.ID = pc.PROFISSAO_ID\n" +
