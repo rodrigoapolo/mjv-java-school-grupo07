@@ -29,7 +29,7 @@ public class CadastroController {
     @Autowired
     private CadastroService cadastroService;
 
-	@GetMapping(value = "/buscar-nao-trabalhando/{empregoAtual}")
+	@GetMapping(value = "/buscar-trabalhando/{empregoAtual}")
 	public ResponseEntity<List<CadastroView>> imprimirNaoTrabalhando(@PathVariable boolean empregoAtual) {
 		List<CadastroView> candidatosNaoTrabalhando = cadastroService.imprimirNaoTrabalhando(empregoAtual);
 		return ResponseEntity.ok().body(candidatosNaoTrabalhando);
