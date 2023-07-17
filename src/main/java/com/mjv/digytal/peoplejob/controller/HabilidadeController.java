@@ -38,7 +38,7 @@ public class HabilidadeController {
 	@PostMapping(value = "/inserir")
 	private ResponseEntity<Habilidade> inserirHabilidade(@RequestBody Habilidade habilidade) {
 		Habilidade habilidadeCriada = habilidadeService.inserirHabilidade(habilidade);
-		return ResponseEntity.ok().body(habilidadeCriada);
+		return ResponseEntity.status(HttpStatus.CREATED).body(habilidadeCriada);
 	}
 	
 	@DeleteMapping(value = "/deletar-por-id/{id}")

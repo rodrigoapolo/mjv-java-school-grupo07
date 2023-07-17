@@ -32,7 +32,7 @@ public class CidadeController {
 	@PostMapping(value = "/inserir")
 	public ResponseEntity<Cidade> inserirCidade(@RequestBody Cidade cidade) {
 		Cidade cidadeRetorno = cidadeService.inserirCidade(cidade);
-		return ResponseEntity.ok().body(cidadeRetorno);
+		return ResponseEntity.status(HttpStatus.CREATED).body(cidadeRetorno);
 	}
 	
 	@PutMapping(value = "/atualizar/{id}")

@@ -66,7 +66,7 @@ public class CadastroService {
 	}
 
 	public Cadastro buscarCPF(String cpf) {
-		return cadastroRepository.getByCpf(cpf);
+		return cadastroRepository.findByCpf(cpf);
 	}
 
 	public QuantidadeHabilidadeView contarCandidatosPorHabilidades(String habilidade) {

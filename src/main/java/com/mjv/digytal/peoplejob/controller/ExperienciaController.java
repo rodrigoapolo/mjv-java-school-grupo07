@@ -32,7 +32,7 @@ public class ExperienciaController {
 	@PostMapping(value = "/inserir")
 	public ResponseEntity<Experiencia> inserirExperiencia(@RequestBody Experiencia experiencia) {
 		Experiencia experienciaCriada = experienciaService.inserirExperiencia(experiencia);
-		return ResponseEntity.ok().body(experienciaCriada);
+		return ResponseEntity.status(HttpStatus.CREATED).body(experienciaCriada);
 	}
 	
 	@PutMapping(value = "/atualizar/{id}")

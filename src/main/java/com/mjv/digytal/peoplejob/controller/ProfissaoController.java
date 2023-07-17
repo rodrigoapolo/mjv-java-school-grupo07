@@ -60,7 +60,7 @@ public class ProfissaoController {
 	@PostMapping(value = "/inserir")
 	public ResponseEntity<Profissao> inserirProfissao(@RequestBody Profissao profissao) {
 		Profissao profissaoRetorno = profissaoService.inserirProfissao(profissao);
-		return ResponseEntity.ok().body(profissaoRetorno);
+		return ResponseEntity.status(HttpStatus.CREATED).body(profissaoRetorno);
 	}
 	
 	@DeleteMapping(value = "/deletar-por-id/{id}")

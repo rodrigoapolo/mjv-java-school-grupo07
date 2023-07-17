@@ -61,7 +61,7 @@ public class CadastroController {
 		return ResponseEntity.ok(cadastroService.buscarCadastrosEntreDatas(dataInicio, dataFim));
 	}
 
-	@GetMapping(value = "/buscar-cadastros-cidade-naoexperiencia/{cidade}")
+	@GetMapping(value = "/buscar-cadastros-cidade-nao-trabalhando/{cidade}")
 	public ResponseEntity<List<CadastroView>> buscarCadastrosPorCidadeEexperiencia(@PathVariable String cidade) {
 		return ResponseEntity.ok(cadastroService.buscarCadastrosPorCidadeEexperiencia(cidade));
 	}
@@ -86,8 +86,8 @@ public class CadastroController {
 		return ResponseEntity.ok().body(quantidade);
 	}
 
-	@GetMapping(value = "/buscar-exceto-profissao")
-	public ResponseEntity<List<CadastroProfissaoView>> imprimirCandidatosExcetoProfissao(String nome) {
+	@GetMapping(value = "/buscar-exceto-profissao/{profissao}")
+	public ResponseEntity<List<CadastroProfissaoView>> imprimirCandidatosExcetoProfissao(@PathVariable("profissao") String nome) {
 		List<CadastroProfissaoView> candidatosNaoAnalistas = cadastroService.buscarCandidatosExcetoProfissao(nome);
 		return ResponseEntity.ok().body(candidatosNaoAnalistas);
 	}
@@ -111,7 +111,7 @@ public class CadastroController {
 	@PostMapping(value = "/inserir")
     public ResponseEntity<Cadastro> inserirCadastro(@RequestBody Cadastro cadastro) {
     	Cadastro cadastroCriado = cadastroService.inserirCadastro(cadastro);
-    	return ResponseEntity.ok().body(cadastroCriado);
+    	return ResponseEntity.status(HttpStatus.CREATED).body(cadastroCriado);
     }
     
     @PutMapping(value = "/atualizar/{id}")
@@ -127,7 +127,7 @@ public class CadastroController {
     	  Cadastro cadastroComExperiencia = cadastroService.adicionarExperienciaAoCadastro(idCadastro, experiencia, idEmpresa, idProfissao);
     	  
           if (cadastroComExperiencia != null) {
-              return ResponseEntity.ok(cadastroComExperiencia);
+              return ResponseEntity.status(HttpStatus.CREATED).body(cadastroComExperiencia);
           } else {
               return ResponseEntity.notFound().build();
           }

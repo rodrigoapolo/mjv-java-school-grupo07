@@ -32,7 +32,7 @@ public class EmpresaController {
 	@PostMapping(value = "/inserir")
 	public ResponseEntity<Empresa> inserirEmpresa(@RequestBody Empresa empresa) {
 		Empresa empresaRetorno = empresaService.inserirEmpresa(empresa);
-		return ResponseEntity.ok().body(empresaRetorno);
+		return ResponseEntity.status(HttpStatus.CREATED).body(empresaRetorno);
 	}
 	
 	@PutMapping(value = "/atualizar/{id}")
