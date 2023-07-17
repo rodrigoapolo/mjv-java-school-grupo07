@@ -10,44 +10,48 @@
       <h2>Pessoa</h2>
       <p>
         <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome"/>
+        <input type="text" name="nome" id="nome" [(ngModel)]="nomeValue"/>
       </p>
       <p>
         <label for="CPF">CPF:</label>
-        <input type="text" name="CPF" id="CPF"/>
+        <input type="text" name="CPF" id="CPF" [(ngModel)]="cpfValue"/>
       </p>
       <p>
         <label for="dataNascimento">Data de Nascimento:</label>
-        <input type="text" name="dataNascimento" id="dataNascimento"/>
+        <input type="date" name="dataNascimento" id="dataNascimento" [(ngModel)]="dataNascimentoValue"/>
       </p>
       <p>
         <label for="sexo">Sexo:</label>
         <span>
-          <input type="radio" name="sexo" value="FEMININO"> Feminino
+          <input type="radio" name="sexo" value="FEMININO" [(ngModel)]="regimeContratacaoValue" (change)="onSexChange($event)"> Feminino
         </span>
         <span>
-          <input type="radio" name="sexo" value="MASCULINO"> Masculino
+          <input type="radio" name="sexo" value="MASCULINO" [(ngModel)]="regimeContratacaoValue" (change)="onSexChange($event)"> Masculino
         </span>
         <span>
-          <input type="radio" name="sexo" value="PREFIRO_NAO_DECLARAR"> Prefiro não declarar
+          <input type="radio" name="sexo" value="PREFIRO_NAO_DECLARAR" [(ngModel)]="regimeContratacaoValue" (change)="onSexChange($event)"> Prefiro não declarar
         </span>
       </p>
       <p>
         <label for="email">E-mail:</label>
-        <input type="text" name="email" id="email"/>
+        <input type="text" name="email" id="email" [(ngModel)]="emailValue"/>
       </p>
       <p>
         <label for="telefone">Telefone:</label>
-        <input type="text" name="telefone" id="telefone"/>
+        <input type="text" name="telefone" id="telefone" [(ngModel)]="telefoneValue"/>
       </p>
       <p>
-        <label for="celularPessoal">Celular Pessoal:</label>
-        <input type="text" name="celularPessoal" id="celularPessoal"/>
+        <label for="celularPessoal">Celular:</label>
+        <input type="text" name="celularPessoal" id="celularPessoal" [(ngModel)]="celularPessoalValue"/>
       </p>
-      <p>
+      <p class="row">
+        <label for="eWhats">É whats?:</label>
+        <input type="checkbox" name="eWhats" id="eWhats" value="" [(ngModel)]="eWhatsValue"> 
+      </p>
+      <!-- <p>
         <label for="celularProfissional">Celular Profissional:</label>
-        <input type="text" name="celularProfissional" id="celularProfissional"/>
-      </p>
+        <input type="text" name="celularProfissional" id="celularProfissional" [(ngModel)]="celularProfissionalValue"/>
+      </p> -->
       <div class="multiline">
         <p>
           <label for="profissao">Profissão:</label>
@@ -61,11 +65,11 @@
       </div>       
       <p>
         <label for="pretençãoMinima">Pretenção Mínima:</label>
-        <input type="text" name="pretençãoMinima" id="pretençãoMinima"/>
+        <input type="number" name="pretençãoMinima" id="pretençãoMinima" [(ngModel)]="pretencaoMinimaValue"/>
       </p>
       <p>
         <label for="pretençãoMaxima">Pretenção Máxima:</label>
-        <input type="text" name="pretençãoMáxima" id="pretençãoMáxima"/>
+        <input type="number" name="pretençãoMáxima" id="pretençãoMáxima" [(ngModel)]="pretencaoMaximaValue"/>
       </p>
       <div class="multiline">
         <p>
@@ -78,45 +82,41 @@
           <div class="itensCadastrados" name="habilidadesCadastradas" id="habilidadesCadastradas">{{habilidadesText}}</div>
         </div>
       </div>
-      <p>
-        <label for="habilidades">Habilidades:</label>
-        <textarea cols="30" rows="5" name="habilidades" id="habilidades"></textarea>
-      </p> 
     </fieldset> 
       
     <fieldset class="secao">
       <h2>Endereço</h2>
       <p>
         <label for="cep">CEP:</label>
-        <input type="text" name="cep" id="cep"/>
+        <input type="text" name="cep" id="cep" [(ngModel)]="cepValue"/>
       </p> 
       <p>
         <label for="">Logradouro:</label>
-        <input type="text" name="logradouro" id="logradouro"/>
+        <input type="text" name="logradouro" id="logradouro" [(ngModel)]="logradouroValue"/>
       </p> 
       <p>
         <label for="numero">Número:</label>
-        <input type="text" name="numero" id="numero"/>
+        <input type="text" name="numero" id="numero" [(ngModel)]="numeroValue"/>
       </p> 
       <p>
         <label for="complemento">Complemento:</label>
-        <input type="text" name="complemento" id="complemento"/>
+        <input type="text" name="complemento" id="complemento" [(ngModel)]="complementoValue"/>
       </p> 
       <p>
         <label for="bairro">Bairro:</label>
-        <input type="text" name="bairro" id="bairro"/>
+        <input type="text" name="bairro" id="bairro" [(ngModel)]="bairroValue"/>
       </p> 
       <p>
         <label for="cidade">Cidade:</label>
-        <input type="text" name="cidade" id="cidade"/>
+        <input type="text" name="cidade" id="cidade" [(ngModel)]="cidadeValue"/>
       </p> 
       <p>
         <label for="estado">Estado:</label>
-        <input type="text" name="estado" id="estado"/>
+        <input type="text" name="estado" id="estado" [(ngModel)]="estadoValue"/>
       </p> 
       <p>
         <label for="uf">UF:</label>
-        <input type="text" name="uf" id="uf"/>
+        <input type="text" name="uf" id="uf" [(ngModel)]="ufValue"/>
       </p> 
 
     </fieldset>
@@ -133,15 +133,15 @@
       </p>  
       <p>
         <label for="salario">Salário:</label>
-        <input type="text" name="salario" id="salario" [(ngModel)]="salarioValue"/>
+        <input type="number" name="salario" id="salario" [(ngModel)]="salarioValue"/>
       </p>  
       <p>
         <label for="dataContratacao">Data Contratação:</label>
-        <input type="text" name="dataContratacao" id="dataContratacao" [(ngModel)]="dataContratacaoValue"/>
+        <input type="date" name="dataContratacao" id="dataContratacao" [(ngModel)]="dataContratacaoValue"/>
       </p> 
       <p>
         <label for="dataDesligamento">Data Desligamento:</label>
-        <input type="text" name="dataDesligamento" id="dataDesligamento" [(ngModel)]="dataDesligamentoValue"/>
+        <input type="date" name="dataDesligamento" id="dataDesligamento" [(ngModel)]="dataDesligamentoValue"/>
       </p> 
       <p>
         <label for="empresa">Empresa:</label>
@@ -159,7 +159,8 @@
     </fieldset>
 
     <fieldset id="profissoesCadastradasDiv" class="profissoesCadastradasDiv secao" style="padding-top: 20px" #profissoesCadastradasDiv></fieldset>
-    <button type="button" class="cadastroButton cadastrar" name="cadastrar" id="cadastrar">Cadastrar</button>
+    
+    <button (click)="cadastrar()" type="button" class="cadastroButton cadastrar" name="cadastrar" id="cadastrar">Cadastrar</button>
   </form>
 </body>
 </html>
