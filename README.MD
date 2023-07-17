@@ -47,13 +47,12 @@ O escopo inicial do projeto consiste na criação de um programa simples, no qua
 ![MER](img/MapeamentoObjetoRelacional.png)
 
 ### Endpoints da API
+Alguns exemplos de endpoints que estão presentes nesse projeto: <br>
 
-- `GET /api/produtos`: Retorna a lista de produtos disponíveis.
-- `POST /api/produtos`: Cria um novo produto.
-- `GET /api/produtos/{id}`: Retorna os detalhes de um produto específico.
-- `PUT /api/produtos/{id}`: Atualiza os detalhes de um produto existente.
-- `DELETE /api/produtos/{id}`: Remove um produto do sistema.
-
+- `GET /api/v1/cadastro/buscar-por-habilidade/{{habilidade}}`: Lista os candidatos referente a uma habilidade específica.
+- `POST /api/v1/cadastro/inserir`: Cria um novo cadastro.
+- `PUT /api/v1/cadastro/atualizar/{{id}}`: Atualiza os detalhes de um cadastro existente.
+- `DELETE /api/v1/cadastro/deletar-por-id/{{id}}`: Remove um cadastro do sistema.
 
 ### Exemplo - GET /api/produtos/1
 
