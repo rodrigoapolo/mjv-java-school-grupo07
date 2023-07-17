@@ -1,17 +1,16 @@
 package com.mjv.digytal.peoplejob.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import com.mjv.digytal.peoplejob.model.Habilidade;
+import com.mjv.digytal.peoplejob.model.Experiencia;
 
-public interface CadastroHabilidadeView {
+public interface CadastroExperienciaView {
 
 	String getNome();
 	String getCpf();
 	LocalDate getDataNascimento();
 	String getEmail();
 	String getTelefone();
-	List<Habilidade> getHabilidades();
+	Experiencia getExperiencias();
 	
 }

@@ -7,5 +7,5 @@ import com.mjv.digytal.peoplejob.model.Experiencia;
 
 @Repository
 public interface ExperienciaRepository extends JpaRepository<Experiencia, Integer> {
-
+	
 }

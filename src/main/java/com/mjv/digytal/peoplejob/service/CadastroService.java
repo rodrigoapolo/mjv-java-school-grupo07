@@ -4,26 +4,61 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import com.mjv.digytal.peoplejob.dto.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.mjv.digytal.peoplejob.dto.CadastroHabilidadeView;
+import com.mjv.digytal.peoplejob.dto.CadastroPretensaoView;
+import com.mjv.digytal.peoplejob.dto.CadastroProfissaoView;
+import com.mjv.digytal.peoplejob.dto.CadastroSexoEnderecoView;
+import com.mjv.digytal.peoplejob.dto.CadastroView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeHabilidadeView;
+import com.mjv.digytal.peoplejob.dto.QuantidadeProfissaoView;
 import com.mjv.digytal.peoplejob.model.Cadastro;
+import com.mjv.digytal.peoplejob.model.Experiencia;
 import com.mjv.digytal.peoplejob.model.Sexo;
 import com.mjv.digytal.peoplejob.repository.CadastroRepository;
+import com.mjv.digytal.peoplejob.repository.EmpresaRepository;
+import com.mjv.digytal.peoplejob.repository.ExperienciaRepository;
+import com.mjv.digytal.peoplejob.repository.ProfissaoRepository;
 
 @Service
 public class CadastroService {
 
 	@Autowired
 	private CadastroRepository cadastroRepository;
+	
+	@Autowired
+	private ExperienciaRepository experienciaRepository;
+	
+	@Autowired
+	private EmpresaRepository empresaRepository;
+	
+	@Autowired
+	private ProfissaoRepository profissaoRepository;
 
 	public List<CadastroView> imprimirNaoTrabalhando(boolean empregoAtual) {
 		 List<CadastroView> candidatosNaoTrabalhando =
 				 cadastroRepository.buscarCandidatosNaotrabalha(empregoAtual);
 		 return candidatosNaoTrabalhando;
+	}
+	
+	public Cadastro adicionarExperienciaAoCadastro(Integer cadastroId, Experiencia experiencia, 
+													Integer empresaId, Integer profissaoId) {
+		
+		Experiencia experienciaSalva = experienciaRepository.save(experiencia);
+		experienciaSalva.setEmpresa(empresaRepository.findById(empresaId).get());
+		experienciaSalva.setProfissao(profissaoRepository.findById(profissaoId).get());
+		
+		Cadastro cadastro = cadastroRepository.findById(cadastroId).get();
+		
+		if(cadastro != null) {
+			cadastro.getExperiencias().add(experienciaSalva);
+			return cadastroRepository.save(cadastro);
+		}
+		return null;
 	}
 	
 	public Optional<Cadastro> buscarPorId(Integer id) {

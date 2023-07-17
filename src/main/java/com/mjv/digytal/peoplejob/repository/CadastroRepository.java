@@ -23,7 +23,7 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
     List<CadastroView> buscarCandidatosNaotrabalha(@Param("empregoAtual") boolean empregoAtual);
 	
     Cadastro getByCpf(String cpf);
-
+    
 	@Query("select c from Cadastro c where c.dataNascimento between :dataInicio and :dataFinal")
 	List<CadastroView> buscarCadastrosPorDataNascimento(LocalDate dataInicio, LocalDate dataFinal);
 
